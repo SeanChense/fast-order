@@ -1,6 +1,7 @@
 ## User Account
 
-###login
+
+### login
 
 `/user/login`
 
@@ -10,8 +11,8 @@
 
 **response** 
 
-```{"status":ERROR_CODE}``` or 
+```{"status":ERROR_CODE}``` 
 
-```{"status":0, "data":{
-	"token":"this is a token"
-}}```
+or 
+
+```{"status":0, "data":{"token":"this is a token"}}```
