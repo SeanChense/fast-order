@@ -49,7 +49,10 @@ class TTable(Base):
 		self.available 	= (uid is None) # use none to free table resource
 
 	def __str__(self):
-		return "<TTable:id=%s used by uid:(%s)>" % (self.id, self.uid)		
+		if self.available:
+			return "<TTable:id=%s available>" % (self.id)		
+		else:
+			return "<TTable:id=%s used by uid:(%s)>" % (self.id, self.uid)		
 Base.metadata.create_all(engine)
 
 session = sessionmaker(bind=engine)
