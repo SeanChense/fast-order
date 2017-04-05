@@ -8,7 +8,7 @@ class Department(Base):
     name = Column(String)
 class Employee(Base):
     __tablename__ = 'employee'
-    id = Column(Integer, /primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     department_id = Column(Integer, ForeignKey('department.id'))
     department = relationship(Department, backref=backref('employees', uselist=True))
