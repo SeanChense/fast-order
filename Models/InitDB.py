@@ -71,7 +71,7 @@ def initDB():
 	# clear()
 	# addUser()
 	# addTables()
-	# updateTables()
+	updateTables()
 
 initDB()
 # clear()
