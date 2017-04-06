@@ -68,10 +68,10 @@ def updateTables():
 	session.commit()
 	print "update table %s" % random_table
 def initDB():
-	# clear()
-	# addUser()
-	# addTables()
-	updateTables()
+	clear()
+	addUser()
+	addTables()
+	# updateTables()
 
 initDB()
 # clear()
