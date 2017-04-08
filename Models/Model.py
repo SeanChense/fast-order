@@ -37,11 +37,10 @@ class User(Base):
 		self.gender 	= gender
 		self.password 	= password
 		self.avatar		= avatar
-		self.token 		= self.generate_auth_token()
 
 	def generate_auth_token(self, expiration = 600):
 		s = Serializer(secret_config.SECRET_KEY, expires_in = expiration)
-		return s.dumps({ 'name': self.name })
+		return s.dumps({ 'id': self.id })
 
 	@staticmethod
 	def verify_auth_token(token):
@@ -57,6 +56,8 @@ class User(Base):
 
 	def __str__(self):
 		return "<User:id=%s, name=%s>" % (self.id, self.name)
+	def as_dict(self):
+		return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 class TTable(Base):
 	__tablename__ = 'TTable'

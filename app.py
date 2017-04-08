@@ -5,6 +5,7 @@ from flask import jsonify
 from flaskext.mysql import MySQL
 
 from Models import Model
+from Models import ErrorCode
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -20,7 +21,7 @@ session = Model.session
 def main():
 	return "Welcome!"
 
-@app.route("/login", methods = ["POST"])
+@app.route("/user/login", methods = ["POST"])
 def login():
 	username = request.form['username']
 	password = request.form['password']
@@ -28,17 +29,27 @@ def login():
 	user = session.query(Model.User).filter(Model.User.name == username, Model.User.password == password).first()
 	print user
 	if user is None:
-		return "username of password is wrong"
+		resp = { "status":ErrorCode.err_password_wrong
+		}
+		return jsonify(resp)
 	else:
-		return "log suss"
+		data = user.as_dict()
+		del data["password"]
 
-@app.route("/register", methods = ["POST"])
+		resp = { "status":0,
+		"data" : data
+		}
+		return jsonify(resp)
+
+@app.route("/user/register", methods = ["POST"])
 def register():
 	username = request.form['username']
 	password = request.form['password']
 	
-	if not username or not password:
-		return jsonify({"err":1001})
+	if not username:
+		return jsonify({"status":ErrorCode.err_username_null})
+	elif not password:
+		return jsonify({"status":ErrorCode.err_password_null})
 	else:
 		return jsonify({"token":"121131"})
 
