@@ -69,8 +69,8 @@ def updateTables():
 	print "update table %s" % random_table
 def initDB():
 	clear()
-	addUser()
-	addTables()
+	# addUser()
+	# addTables()
 	# updateTables()
 
 initDB()

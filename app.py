@@ -26,7 +26,7 @@ def login():
 	username = request.form['username']
 	password = request.form['password']
 
-	user = session.query(Model.User).filter(Model.User.name == username, Model.User.password == password).first()
+	user = Model.User.user_filter_name_password(username, password)
 	print user
 	if user is None:
 		resp = { "status":ErrorCode.err_password_wrong
@@ -51,9 +51,19 @@ def register():
 	elif not password:
 		return jsonify({"status":ErrorCode.err_password_null})
 	else:
-		return jsonify({"token":"121131"})
+		user = Model.User(username, password) 
+		user.user_save()	
+		user.generate_auth_token()
+		resp = { "status":0,
+		"data" : user.as_dict()
+		}
+		return jsonify(resp)
 
-
+@app.route("/user/info", methods = ["GET"])
+def info():
+	token = request.headers.get('token')
+	user  = Model.User.verify_auth_token(token)
+	return jsonify(user.as_dict())
 if __name__ == "__main__":
 	app.run()
 

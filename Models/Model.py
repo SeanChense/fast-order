@@ -22,6 +22,9 @@ engineArgs = 'mysql://' + secret_config.database_user + ":" + \
 engine = create_engine(engineArgs)
 Base = declarative_base()
 
+session = sessionmaker(bind=engine)
+session = session()
+
 class User(Base):
 	__tablename__ = 'User'
 	id 		= Column(Integer, primary_key=True)
@@ -31,7 +34,7 @@ class User(Base):
 	password= Column(String(100))
 	avatar	= Column(TEXT)
 	token	= Column(TEXT)
-	def __init__(self, name, age, gender, password, avatar):
+	def __init__(self, name, password, age=None, gender=None, avatar=None):
 		self.name = name
 		self.age  = age
 		self.gender 	= gender
@@ -40,7 +43,24 @@ class User(Base):
 
 	def generate_auth_token(self, expiration = 600):
 		s = Serializer(secret_config.SECRET_KEY, expires_in = expiration)
-		return s.dumps({ 'id': self.id })
+		self.token = s.dumps({ 'id': self.id })
+		session.commit()
+		return self.token
+
+
+	def user_save(self):
+		session.add(self)
+		session.commit()
+
+	@staticmethod
+	def user_filter_name_password(name, password):
+		user = session.query(User).filter(User.name == name, User.password == password).first()
+		return user
+
+	@staticmethod 
+	def user_filter_id(id):
+		user = session.query(User).filter(User.id == id).first()
+		return user
 
 	@staticmethod
 	def verify_auth_token(token):
@@ -51,7 +71,7 @@ class User(Base):
 		    return None # valid token, but expired
 		except BadSignature:
 		    return None # invalid token
-		user = User.query.get(data['id'])
+		user = User.user_filter_id(data['id'])
 		return user
 
 	def __str__(self):
@@ -75,44 +95,4 @@ class TTable(Base):
 		else:
 			return "<TTable:id=%s used by uid:(%s)>" % (self.id, self.uid)		
 Base.metadata.create_all(engine)
-
-session = sessionmaker(bind=engine)
-session = session()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 

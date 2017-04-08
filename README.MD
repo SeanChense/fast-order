@@ -1,3 +1,5 @@
+## ERROR_CODE
+
 * 1001 password wrong
 * 1002 username can not be null
 * 1003 password can not be null
