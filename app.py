@@ -1,11 +1,13 @@
 import sqlite3, os
 import secret_config
+from Decorator import login_required
 from flask import Flask, request
 from flask import jsonify
 from flaskext.mysql import MySQL
 
 from Models import Model
 from Models import ErrorCode
+
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -33,6 +35,7 @@ def login():
 		}
 		return jsonify(resp)
 	else:
+		user.generate_auth_token()
 		data = user.as_dict()
 		del data["password"]
 
@@ -60,10 +63,9 @@ def register():
 		return jsonify(resp)
 
 @app.route("/user/info", methods = ["GET"])
-def info():
-	token = request.headers.get('token')
-	user  = Model.User.verify_auth_token(token)
-	return jsonify(user.as_dict())
+@login_required
+def tableinfo():
+	return jsonify("good for you")
 if __name__ == "__main__":
 	app.run()
 

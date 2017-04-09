@@ -40,9 +40,9 @@ def addUser():
 	# def __init__(self, name, age, gender, password, avatar):
 	for url in avatars:
 		user = Model.User(names.get_full_name(), 
+						  names.get_full_name(),
 						  random.randint(20, 50),
 						  random.randint(0, 2),
-						  names.get_full_name(),
 						  url)
 		session.add(user)
 		print "add user %s" % user
