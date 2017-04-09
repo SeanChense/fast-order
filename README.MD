@@ -34,6 +34,31 @@ or
 **You should set the `token` into HTTP header using key-value `token:TOKEN_STRING` to access following resource**
 
 
+### register
+
+`/user/register`
+
+**request** `POST`
+
+	{
+		"name": "daming",
+	    "password": "456"
+	}
+
+**response**
+
+	{
+	  "data": {
+	    "age": null,
+	    "avatar": null,
+	    "gender": null,
+	    "id": 105,
+	    "name": "daming",
+	    "token": "eyJhbGciOiJIUzI1NiIsImV4cCI6MTQ5Nzc0MjE1MSwiaWF0IjoxNDkxNzQyMTUxfQ.eyJpZCI6MTA1fQ.mC7mcxUFkjsQiGJhKlZd-BYIc4SG6Xn5yag4_pFobj4"
+	  },
+	  "status": 0
+	}
+
 ## Table 
 
 ### explore all tables

@@ -47,8 +47,12 @@ def register():
 		user = User(username, password) 
 		user.user_save()	
 		user.generate_auth_token()
+
+		user = user.as_dict()
+		del user['password']
+
 		resp = { "status":0,
-		"data" : user.as_dict()
+		"data" : user
 		}
 		return jsonify(resp)
 
