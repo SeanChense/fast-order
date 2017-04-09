@@ -15,4 +15,4 @@ def query_tables():
 	tables = []
 	for table in DinnerTable.tables():
 		tables.append(table.as_dict())
-	return jsonify(tables)
+	return jsonify({"status":0, "data":tables})
