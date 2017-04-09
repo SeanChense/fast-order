@@ -67,22 +67,21 @@ or
 **request** `GET`
 
 **response**
-
-```{
-  "data": [
-    {
-      "available": 1,
-      "id": 10,
-      "uid": null # if is unavailable, uid will be user's id 
-    },
-    {
-      "available": 1,
-      "id": 11,
-      "uid": null
-    }
-  ],
-  "status": 0
-}```
+	{
+	  "data": [
+	    {
+	      "available": 1,
+	      "id": 10,
+	      "uid": null # if is unavailable, uid will be user's id 
+	    },
+	    {
+	      "available": 1,
+	      "id": 11,
+	      "uid": null
+	    }
+	  ],
+	  "status": 0
+	}
 
 
 ## Menu
