@@ -83,3 +83,45 @@ or
   ],
   "status": 0
 }```
+
+
+## Menu
+
+### explore all menus
+`/menu/`
+
+**request** `GET`
+**reponse** 
+	{
+	  "data": [
+	    {
+	      "category": null,
+	      "id": 6,
+	      "name": "Barbara Bratcher",
+	      "price": 6,
+	      "subcategory": null
+	    },
+	    {
+	      "category": null,
+	      "id": 7,
+	      "name": "Matt Cruz",
+	      "price": 7,
+	      "subcategory": null
+	    },
+	    {
+	      "category": null,
+	      "id": 8,
+	      "name": "Jason Decker",
+	      "price": 8,
+	      "subcategory": null
+	    },
+	    {
+	      "category": null,
+	      "id": 9,
+	      "name": "Charles Montgomery",
+	      "price": 9,
+	      "subcategory": null
+	    }
+	  ],
+	  "status": 0
+	}
