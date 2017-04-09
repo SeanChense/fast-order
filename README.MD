@@ -73,7 +73,7 @@ or
     {
       "available": 1,
       "id": 10,
-      "uid": null
+      "uid": null # if is unavailable, uid will be user's id 
     },
     {
       "available": 1,

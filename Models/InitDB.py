@@ -1,5 +1,6 @@
 from User import *
 from DinnerTable import *
+from Menu import *
 import names
 import random
 
@@ -66,11 +67,21 @@ def updateTables():
 	random_table.available = 0
 	session.commit()
 	print "update table %s" % random_table
+
+def addMenus():
+	for x in xrange(1,10):
+		menu = Menu(names.get_full_name(), 
+			x)
+		session.add(menu)
+		session.commit()
+		print menu
+		
 def initDB():
-	clear()
-	addUser()
-	addTables()
+	# clear()
+	# addUser()
+	# addTables()
 	# updateTables()
+	addMenus()
 
 initDB()
 # clear()

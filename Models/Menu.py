@@ -26,58 +26,36 @@ session = sessionmaker(bind=engine)
 session = session()
 
 
-class User(Base):
-    __tablename__ = 'User'
+class Menu(Base):
+    __tablename__ = 'Menu'
     id      = Column(Integer, primary_key=True)
     name    = Column(String(100))
-    age     = Column(Integer)
-    gender  = Column(Integer) # 0 for boy, 1 for girl, 2 for others
-    password= Column(String(100))
-    avatar  = Column(TEXT)
-    token   = Column(TEXT)
-    def __init__(self, name, password, age=None, gender=None, avatar=None):
+    category= Column(Integer)
+    subcategory = Column(Integer)
+    price	= Column(FLOAT)
+  
+
+    def __init__(self, name, price):
         self.name = name
-        self.age  = age
-        self.gender     = gender
-        self.password   = password
-        self.avatar     = avatar
+        self.price = price
 
-    def generate_auth_token(self, expiration = 6000000):
-        s = Serializer(secret_config.SECRET_KEY, expires_in = expiration)
-        self.token = s.dumps({ 'id': self.id })
-        session.commit()
-        return self.token
-
-
-    def user_save(self):
+    def menu_save(self):
         session.add(self)
         session.commit()
-        print self
-
-    @staticmethod
-    def user_filter_name_password(name, password):
-        user = session.query(User).filter(User.name == name, User.password == password).first()
-        return user
 
     @staticmethod 
-    def user_filter_id(id):
-        user = session.query(User).get(id)
-        return user
+    def menu_filter_id(id):
+        menu = session.query(Menu).get(id)
+        return menu
 
     @staticmethod
-    def verify_auth_token(token):
-        s = Serializer(secret_config.SECRET_KEY)
-        try:
-            data = s.loads(token)
-        except SignatureExpired:
-            return -1 # valid token, but expired
-        except BadSignature:
-            return -2 # invalid token
-        user = User.user_filter_id(data['id'])
-        return user
+    def menus():
+        menus = session.query(Menu).all()
+        return menus 
 
     def __str__(self):
         return "%s" % self.as_dict()
+
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 Base.metadata.create_all(engine)
