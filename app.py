@@ -5,8 +5,8 @@ from flask import Flask, request
 from flask import jsonify
 from flaskext.mysql import MySQL
 
-from Models import Model
-from Models import ErrorCode
+from Models.User import User
+from Models.ErrorCode import *
 
 
 mysql = MySQL()
@@ -17,8 +17,6 @@ app.config['MYSQL_DATABASE_DB'] = secret_config.database_name
 app.config['MYSQL_DATABASE_HOST'] = secret_config.database_host
 mysql.init_app(app)
 
-session = Model.session
-
 @app.route("/")
 def main():
 	return "Welcome!"
@@ -28,10 +26,10 @@ def login():
 	username = request.form['username']
 	password = request.form['password']
 
-	user = Model.User.user_filter_name_password(username, password)
+	user = User.user_filter_name_password(username, password)
 	print user
 	if user is None:
-		resp = { "status":ErrorCode.err_password_wrong
+		resp = { "status":err_password_wrong
 		}
 		return jsonify(resp)
 	else:
@@ -50,11 +48,11 @@ def register():
 	password = request.form['password']
 	
 	if not username:
-		return jsonify({"status":ErrorCode.err_username_null})
+		return jsonify({"status":err_username_null})
 	elif not password:
-		return jsonify({"status":ErrorCode.err_password_null})
+		return jsonify({"status":err_password_null})
 	else:
-		user = Model.User(username, password) 
+		user = User(username, password) 
 		user.user_save()	
 		user.generate_auth_token()
 		resp = { "status":0,

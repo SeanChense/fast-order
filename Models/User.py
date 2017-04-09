@@ -25,6 +25,7 @@ Base = declarative_base()
 session = sessionmaker(bind=engine)
 session = session()
 
+
 class User(Base):
     __tablename__ = 'User'
     id      = Column(Integer, primary_key=True)
@@ -78,21 +79,5 @@ class User(Base):
         return "<User:id=%s, name=%s>" % (self.id, self.name)
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
-class TTable(Base):
-    __tablename__ = 'TTable'
-    id          = Column(Integer, primary_key=True)
-    uid         = Column(Integer)
-    available   = Column(TINYINT)
-    
-    def __init__(self, uid):
-        self.uid        = uid
-        self.available  = (uid is None) # use none to free table resource
-
-    def __str__(self):
-        if self.available:
-            return "<TTable:id=%s available>" % (self.id)       
-        else:
-            return "<TTable:id=%s used by uid:(%s)>" % (self.id, self.uid)      
 Base.metadata.create_all(engine)
 

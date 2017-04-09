@@ -1,19 +1,18 @@
-import Model
+from User import *
+from DinnerTable import *
 import names
 import random
 
-session = Model.session
-
 def clear():
-	#clear tables
-	tables = session.query(Model.TTable).all()
+	# clear tables
+	tables = session.query(DinnerTable).all()
 	for table in tables:
 		session.delete(table)
 		session.commit()
 		print "delete table %s" % table
 
 	# #clear users
-	users	= session.query(Model.User).all()
+	users	= session.query(User).all()
 	for user in users:
 		session.delete(user)
 		session.commit()
@@ -39,7 +38,7 @@ def addUser():
 	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_b9bf8c40-0dec-11e6-96d3-9b6ed08c86ad/banner_img_1461924473392.jpg")
 	# def __init__(self, name, age, gender, password, avatar):
 	for url in avatars:
-		user = Model.User(names.get_full_name(), 
+		user = User(names.get_full_name(), 
 						  names.get_full_name(),
 						  random.randint(20, 50),
 						  random.randint(0, 2),
@@ -51,7 +50,7 @@ def addUser():
 def addTables():
 	#init 10 tables
 	for x in xrange(1,10):
-		table = Model.TTable(None) # add 10 unused table
+		table = DinnerTable(None) # add 10 unused table
 		session.add(table)
 		print "add table %s" % table
 		session.commit()
@@ -69,8 +68,8 @@ def updateTables():
 	print "update table %s" % random_table
 def initDB():
 	clear()
-	# addUser()
-	# addTables()
+	addUser()
+	addTables()
 	# updateTables()
 
 initDB()
