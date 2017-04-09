@@ -67,6 +67,7 @@ or
 **request** `GET`
 
 **response**
+
 	{
 	  "data": [
 	    {
@@ -87,10 +88,13 @@ or
 ## Menu
 
 ### explore all menus
+
 `/menu/`
 
 **request** `GET`
+
 **reponse** 
+
 	{
 	  "data": [
 	    {
