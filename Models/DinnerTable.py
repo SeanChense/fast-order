@@ -38,5 +38,13 @@ class DinnerTable(Base):
         if self.available:
             return "<DinnerTable:id=%s available>" % (self.id)       
         else:
-            return "<DinnerTable:id=%s used by uid:(%s)>" % (self.id, self.uid)      
+            return "<DinnerTable:id=%s used by uid:(%s)>" % (self.id, self.uid) 
+            
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+    @staticmethod
+    def tables():
+        tables = session.query(DinnerTable).all()
+        return tables     
 Base.metadata.create_all(engine)
