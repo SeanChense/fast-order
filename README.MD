@@ -3,6 +3,10 @@
 * 1001 password wrong
 * 1002 username can not be null
 * 1003 password can not be null
+* 1004 need login
+* 1005 token can not be null
+* 1006 token expired
+* 1007 token is invalid
 
 
 
