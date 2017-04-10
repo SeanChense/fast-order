@@ -59,9 +59,9 @@ def register():
 
 @mod.route("/order", methods = ["GET"])
 @login_required
-def query_orders():
+def query_orders(user):
 	orders = []
-	for order in Order.order_filter_uid(107):
+	for order in Order.order_filter_uid(user.id):
 		orders.append(order.as_dict())
 	return jsonify({"status":0,
 		"data":orders})

@@ -17,5 +17,5 @@ def login_required(f):
 			return jsonify({"status" : ErrorCode.err_token_expired})
 		if user == -2:
 			return jsonify({"status" : ErrorCode.err_token_invalid})
-		return f(*args, **kwargs)
+		return f(user)
     return decorated_function
