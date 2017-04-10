@@ -5,6 +5,7 @@ from flask import Flask, request, Blueprint
 from flask import jsonify
 from Decorator import login_required
 from Models.User import User
+from Models.Order import Order
 from Models.ErrorCode import *
 
 mod = Blueprint('User', __name__, url_prefix='/user')
@@ -56,7 +57,12 @@ def register():
 		}
 		return jsonify(resp)
 
-@mod.route("/info", methods = ["GET"])
+@mod.route("/order", methods = ["GET"])
 @login_required
-def tableinfo():
-	return jsonify("good for you")
+def query_orders():
+	orders = []
+	for order in Order.order_filter_uid(107):
+		orders.append(order.as_dict())
+	return jsonify({"status":0,
+		"data":orders})
+	

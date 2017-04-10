@@ -1,8 +1,10 @@
 from User import *
 from DinnerTable import *
 from Menu import *
+from Order import *
 import names
 import random
+
 
 def clear():
 	# clear tables
@@ -75,13 +77,21 @@ def addMenus():
 		session.add(menu)
 		session.commit()
 		print menu
+
+def addOrder():
+	# def __init__(self, sum_price, menu_count, menus, table_id, uid):
+	order = Order(123, 3, [1, 2, 3], 19, 107)
+	session.add(order)
+	session.commit()
+		
 		
 def initDB():
 	# clear()
 	# addUser()
 	# addTables()
 	# updateTables()
-	addMenus()
+	# addMenus()
+	addOrder()
 
 initDB()
 # clear()
