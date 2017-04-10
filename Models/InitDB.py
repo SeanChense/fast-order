@@ -59,11 +59,11 @@ def addTables():
 		session.commit()
 
 def updateTables():
-	rand = random.randrange(0, session.query(Model.TTable).count()) 
-	random_table = session.query(Model.TTable)[rand]
+	rand = random.randrange(0, session.query(DinnerTable).count()) 
+	random_table = session.query(DinnerTable)[rand]
 	
-	rand = random.randrange(0, session.query(Model.User).count()) 
-	random_user  = session.query(Model.User)[rand]
+	rand = random.randrange(0, session.query(User).count()) 
+	random_user  = session.query(User)[rand]
 
 	random_table.uid = random_user.id
 	random_table.available = 0
@@ -80,10 +80,14 @@ def addMenus():
 
 def addOrder():
 	# def __init__(self, sum_price, menu_count, menus, table_id, uid):
-	order = Order(123, 3, [1, 2, 3], 19, 107)
+	order = Order(123, 3, "1, 2, 3", 19, 31)
 	session.add(order)
 	session.commit()
-		
+
+def clearOrder():
+	for order in Order.orders():
+		session.delete(order)
+	session.commit()
 		
 def initDB():
 	# clear()
@@ -92,6 +96,7 @@ def initDB():
 	# updateTables()
 	# addMenus()
 	addOrder()
+	# clearOrder()
 
 initDB()
 # clear()

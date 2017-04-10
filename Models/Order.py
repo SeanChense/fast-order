@@ -29,7 +29,7 @@ session = session()
 
 
 class Order(Base):
-    __tablename__ = 'Order'
+    __tablename__ = 'od'
     id          = Column(Integer, primary_key=True)
     sum_price   = Column(FLOAT)
     menu_count  = Column(Integer)
@@ -61,13 +61,16 @@ class Order(Base):
         return orders
 
     @staticmethod
-    def menus():
-        menus = session.query(Order).all()
+    def orders():
+        orders = session.query(Order).all()
         return orders 
 
     def __str__(self):
         return "%s" % self.as_dict()
 
     def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        desc =  {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        desc['createdAt'] = desc['createdAt'].strftime("%Y-%m-%d %X")
+        return desc
+
 Base.metadata.create_all(engine)
