@@ -62,7 +62,6 @@ def register():
 def query_orders(user):
 	orders = []
 	for order in Order.order_filter_uid(user.id):
-		print order
 		orders.append(order.as_dict())
 	return jsonify({"status":0,
 		"data":orders})

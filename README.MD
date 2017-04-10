@@ -1,14 +1,14 @@
 ## ERROR_CODE
 
-* 0000 Everything is ok
+	0000 Everything is ok
 
-* 1001 password wrong
-* 1002 username can not be null
-* 1003 password can not be null
-* 1004 need login
-* 1005 token can not be null
-* 1006 token expired
-* 1007 token is invalid
+	1001 password wrong
+	1002 username can not be null
+	1003 password can not be null
+	1004 need login
+	1005 token can not be null
+	1006 token expired
+	1007 token is invalid
 
 
 
@@ -21,15 +21,27 @@
 
 **request** `POST`
 
-`{"password":"this is a password", "username":"this is a username"}`
+	{
+		"password":"this is a password", 
+		"username":"this is a username"
+	}
 
 **response** 
 
-```{"status":ERROR_CODE}``` 
+	{
+		"status":ERROR_CODE
+	} 
 
 or 
 
-```{"status":0, "data":{"token":"this is a token"}}```
+	{
+		"status":0, 
+		"data":
+				{
+					"token":"this is a token"
+				}
+	
+	}
 
 **You should set the `token` into HTTP header using key-value `token:TOKEN_STRING` to access following resource**
 
@@ -58,6 +70,31 @@ or
 	  },
 	  "status": 0
 	}
+
+### explore all orders
+`/user/order/`
+
+**request** `GET`
+
+**response**
+
+	{
+	  "data": [
+	    {
+	      "createdAt": "2017-04-10 14:24:38",
+	      "id": 3,
+	      "menu_count": 3,
+	      "menus": "1, 2, 3",
+	      "sum_price": 123,
+	      "table_id": 19,
+	      "uid": 31
+	    }
+	  ],
+	  "status": 0
+	}
+​	
+
+
 
 ## Table 
 
