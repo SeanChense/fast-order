@@ -81,8 +81,7 @@ def addMenus():
 def addOrder():
 	# def __init__(self, sum_price, menu_count, menus, table_id, uid):
 	order = Order(123, "1, 2, 3", 19, 31)
-	session.add(order)
-	session.commit()
+	order.order_save()
 
 def clearOrder():
 	for order in Order.orders():

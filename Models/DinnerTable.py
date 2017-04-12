@@ -47,4 +47,23 @@ class DinnerTable(Base):
     def tables():
         tables = session.query(DinnerTable).all()
         return tables     
+
+    @staticmethod
+    def table_filter_id(id):
+        table = session.query(DinnerTable).get(id)
+        return table
+
+    @staticmethod
+    def use_table(id, uid):
+        table = DinnerTable.table_filter_id(id)
+        if not table:
+            print "table %s not found" % (id)
+            return
+
+        table.uid = uid
+        table.available = 0
+        session.commit()
+
+
+
 Base.metadata.create_all(engine)

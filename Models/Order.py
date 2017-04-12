@@ -2,6 +2,7 @@ import sys
 sys.path.append('..') 
 import secret_config
 from Menu import *
+from DinnerTable import *
 
 from sqlalchemy import Column, String, Integer, ForeignKey
 from flask import Flask
@@ -31,12 +32,13 @@ session = session()
 
 class Order(Base):
     __tablename__ = 'od'
-    id          = Column(Integer, primary_key=True)
+    id          = Column(Integer, primary_key=True, unique=True)
     amount      = Column(FLOAT)
     menus       = Column(TEXT)
     createdAt   = Column(DATETIME)
     table_id    = Column(Integer)
     uid         = Column(Integer)
+    menus_obj   = []
 
     def __init__(self, amount, menus, table_id, uid):
         self.amount     = amount
@@ -46,28 +48,36 @@ class Order(Base):
         self.uid        = uid
 
     def order_save(self):
+        print 'id %s' %self.id
+        print 'uid %s' %self.uid
         session.add(self)
         session.commit()
-        # session.refresh(self)
+        
+        # disable table
+        # DinnerTable.use_table(self.table_id, self.uid)
+
 
     @staticmethod 
     def order_filter_id(id):
         order = session.query(Order).get(id)
-        return Order.__query_menus([order])
+        return Order.__query_menus(order)
 
     @staticmethod
     def order_filter_uid(uid):
         orders = session.query(Order).filter(Order.uid == uid).all()
-        return Order.__query_menus(orders)
+        for order in orders:
+            order = Order.__query_menus(order)
+        return orders
 
     @staticmethod
-    def __query_menus(orders):
-        for order in orders:
-                menus = []
-                for index in order.menus.split(","):
-                    menus.append(Menu.menu_filter_id(index))
-                order.menus = menus
-        return orders
+    def __query_menus(order):
+        menus = []
+        for index in order.menus.split(","):
+            menus.append(Menu.menu_filter_id(index))
+
+        order.menus_obj = menus
+
+        return order
 
     @staticmethod
     def orders():
@@ -81,7 +91,7 @@ class Order(Base):
         desc =  {c.name: getattr(self, c.name) for c in self.__table__.columns}
         desc['createdAt'] = desc['createdAt'].strftime("%Y-%m-%d %X")
         menus = []
-        for menu in desc['menus']:
+        for menu in self.menus_obj:
             menus.append(menu.as_dict())
         desc['menus'] = menus
         return desc
