@@ -33,15 +33,13 @@ class Order(Base):
     __tablename__ = 'od'
     id          = Column(Integer, primary_key=True)
     amount      = Column(FLOAT)
-    menu_count  = Column(Integer)
     menus       = Column(TEXT)
     createdAt   = Column(DATETIME)
     table_id    = Column(Integer)
     uid         = Column(Integer)
 
-    def __init__(self, amount, menu_count, menus, table_id, uid):
-        self.sum_price  = amount
-        self.menu_count = menu_count
+    def __init__(self, amount, menus, table_id, uid):
+        self.amount     = amount
         self.menus      = menus
         self.createdAt  = datetime.datetime.now()
         self.table_id   = table_id
@@ -50,18 +48,23 @@ class Order(Base):
     def order_save(self):
         session.add(self)
         session.commit()
+        # session.refresh(self)
 
     @staticmethod 
     def order_filter_id(id):
         order = session.query(Order).get(id)
-        return menu
+        return Order.__query_menus([order])
 
     @staticmethod
     def order_filter_uid(uid):
         orders = session.query(Order).filter(Order.uid == uid).all()
+        return Order.__query_menus(orders)
+
+    @staticmethod
+    def __query_menus(orders):
         for order in orders:
                 menus = []
-                for index in order.menus.split(", "):
+                for index in order.menus.split(","):
                     menus.append(Menu.menu_filter_id(index))
                 order.menus = menus
         return orders
