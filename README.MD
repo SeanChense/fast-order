@@ -191,3 +191,47 @@ or
 ## Order
 
 ### create order
+`order/create`
+
+**request** `POST`
+	{
+	  "table_id" : 2,
+	  "menus_id" : 1,3,4 # string, separate with ','
+	}
+
+**response**
+
+	{
+	  "data": {
+	    "amount": 8,
+	    "createdAt": "2017-04-12 14:42:39",
+	    "id": 14,
+	    "menus": [
+	      {
+	        "category": null,
+	        "id": 1,
+	        "name": "Douglas Stewart",
+	        "price": 1,
+	        "subcategory": null
+	      },
+	      {
+	        "category": null,
+	        "id": 3,
+	        "name": "John Meszaros",
+	        "price": 3,
+	        "subcategory": null
+	      },
+	      {
+	        "category": null,
+	        "id": 4,
+	        "name": "William Ortiz",
+	        "price": 4,
+	        "subcategory": null
+	      }
+	    ],
+	    "table_id": 3,
+	    "uid": 31
+	  },
+	  "status": 0
+	}
+
