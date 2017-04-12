@@ -54,7 +54,7 @@ class Order(Base):
         session.commit()
         
         # disable table
-        # DinnerTable.use_table(self.table_id, self.uid)
+        DinnerTable.use_table(self.table_id, self.uid)
 
 
     @staticmethod 
