@@ -1,6 +1,7 @@
 import sys 
 sys.path.append('..') 
 import secret_config
+from Menu import *
 
 from sqlalchemy import Column, String, Integer, ForeignKey
 from flask import Flask
@@ -31,15 +32,15 @@ session = session()
 class Order(Base):
     __tablename__ = 'od'
     id          = Column(Integer, primary_key=True)
-    sum_price   = Column(FLOAT)
+    amount      = Column(FLOAT)
     menu_count  = Column(Integer)
     menus       = Column(TEXT)
     createdAt   = Column(DATETIME)
     table_id    = Column(Integer)
     uid         = Column(Integer)
 
-    def __init__(self, sum_price, menu_count, menus, table_id, uid):
-        self.sum_price  = sum_price
+    def __init__(self, amount, menu_count, menus, table_id, uid):
+        self.sum_price  = amount
         self.menu_count = menu_count
         self.menus      = menus
         self.createdAt  = datetime.datetime.now()
@@ -58,6 +59,11 @@ class Order(Base):
     @staticmethod
     def order_filter_uid(uid):
         orders = session.query(Order).filter(Order.uid == uid).all()
+        for order in orders:
+                menus = []
+                for index in order.menus.split(", "):
+                    menus.append(Menu.menu_filter_id(index))
+                order.menus = menus
         return orders
 
     @staticmethod
@@ -71,6 +77,10 @@ class Order(Base):
     def as_dict(self):
         desc =  {c.name: getattr(self, c.name) for c in self.__table__.columns}
         desc['createdAt'] = desc['createdAt'].strftime("%Y-%m-%d %X")
+        menus = []
+        for menu in desc['menus']:
+            menus.append(menu.as_dict())
+        desc['menus'] = menus
         return desc
 
 Base.metadata.create_all(engine)
