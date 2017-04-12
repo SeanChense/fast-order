@@ -81,11 +81,33 @@ or
 	{
 	  "data": [
 	    {
-	      "createdAt": "2017-04-10 14:24:38",
-	      "id": 3,
+	      "amount": null,
+	      "createdAt": "2017-04-12 12:52:43",
+	      "id": 1,
 	      "menu_count": 3,
-	      "menus": "1, 2, 3",
-	      "sum_price": 123,
+	      "menus": [
+	        {
+	          "category": null,
+	          "id": 1,
+	          "name": "Douglas Stewart",
+	          "price": 1,
+	          "subcategory": null
+	        },
+	        {
+	          "category": null,
+	          "id": 2,
+	          "name": "Carlos Riggs",
+	          "price": 2,
+	          "subcategory": null
+	        },
+	        {
+	          "category": null,
+	          "id": 3,
+	          "name": "John Meszaros",
+	          "price": 3,
+	          "subcategory": null
+	        }
+	      ],
 	      "table_id": 19,
 	      "uid": 31
 	    }
