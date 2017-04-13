@@ -11,6 +11,8 @@
 	1007 token is invalid
 	1008 table_id can not be null
 	1009 menus_id can not be null
+	1010 menu_id can not be null
+	1011 menu not found
 
 
 ## User Account

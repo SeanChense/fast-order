@@ -8,3 +8,6 @@ err_token_invalid		= 1007
 
 err_tableid_null		= 1008
 err_menusid_null		= 1009
+
+err_menuid_null  		= 1010
+err_menu_not_found		= 1011
