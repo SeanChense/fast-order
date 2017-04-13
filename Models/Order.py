@@ -71,6 +71,9 @@ class Order(Base):
 
     @staticmethod
     def __query_menus(order):
+        if not order: 
+            return None
+
         menus = []
         for index in order.menus.split(","):
             menus.append(Menu.menu_filter_id(index))

@@ -2,6 +2,7 @@
 
 	0000 Everything is ok
 
+	# account
 	1001 password wrong
 	1002 username can not be null
 	1003 password can not be null
@@ -9,10 +10,13 @@
 	1005 token can not be null
 	1006 token expired
 	1007 token is invalid
+	# resource
 	1008 table_id can not be null
 	1009 menus_id can not be null
 	1010 menu_id can not be null
 	1011 menu not found
+	1012 order_id can not be null
+	1013 order not found
 
 
 ## User Account
@@ -118,7 +122,6 @@ or
 	  "status": 0
 	}
 ​	
-
 
 
 ## Table 
@@ -239,3 +242,46 @@ or
 	  "status": 0
 	}
 
+### fetch order detail by id
+
+**request** `POST`
+
+	{
+		"order_id":23
+	}
+
+**response**
+
+	{
+	  "data": {
+	    "amount": 9,
+	    "createdAt": "2017-04-12 17:16:05",
+	    "id": 95,
+	    "menus": [
+	      {
+	        "category": null,
+	        "id": 1,
+	        "name": "Douglas Stewart",
+	        "price": 1,
+	        "subcategory": null
+	      },
+	      {
+	        "category": null,
+	        "id": 3,
+	        "name": "John Meszaros",
+	        "price": 3,
+	        "subcategory": null
+	      },
+	      {
+	        "category": null,
+	        "id": 5,
+	        "name": "Melinda Carrasco",
+	        "price": 5,
+	        "subcategory": null
+	      }
+	    ],
+	    "table_id": 34,
+	    "uid": 31
+	  },
+	  "status": 0
+	}

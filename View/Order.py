@@ -41,3 +41,24 @@ def create_order(user):
 		'status':0,
 		'data': order.as_dict()
 		})
+
+@mod.route("/detail", methods = ['POST'])
+@login_required
+def order_detail(user):
+	order_id = request.form['order_id']
+	if not order_id:
+		return jsonify({
+			'status':err_orderid_null
+			})
+
+	order = Order.order_filter_id(order_id)
+	print order
+	if not order:
+		return jsonify({
+			'status':err_order_not_found
+			})
+
+	return jsonify({
+		'status':0,
+		'data':order.as_dict()
+		})
