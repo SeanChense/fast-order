@@ -58,12 +58,26 @@ class DinnerTable(Base):
         table = DinnerTable.table_filter_id(id)
         if not table:
             print "table %s not found" % (id)
-            return
+            return -1
 
         table.uid = uid
         table.available = 0
         session.commit()
 
+        return 0
+
+    @staticmethod
+    def free_table(id):
+        table = DinnerTable.table_filter_id(id)
+        if not table:
+            print "table %s not found" % (id)
+            return -1
+
+        table.uid = None
+        table.available = 1
+        session.commit()
+
+        return 0
 
 
 Base.metadata.create_all(engine)

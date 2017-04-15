@@ -11,5 +11,8 @@ err_menusid_null		= 1009
 
 err_menuid_null  		= 1010
 err_menu_not_found		= 1011
+
 err_orderid_null		= 1012
 err_order_not_found		= 1013
+
+err_table_not_found		= 1014

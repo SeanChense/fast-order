@@ -17,6 +17,7 @@
 	1011 menu not found
 	1012 order_id can not be null
 	1013 order not found
+	1014 table not found
 
 
 ## User Account
