@@ -43,12 +43,15 @@
 or 
 
 	{
-		"status":0, 
-		"data":
-				{
-					"token":"this is a token"
-				}
-	
+	  "data": {
+	    "age": null,
+	    "avatar": null,
+	    "gender": null,
+	    "id": 1,
+	    "name": "sss",
+	    "token": "eyJhbGciOiJIUzI1NiIsImV4cCI6MTQ5ODI0Mjc5NywiaWF0IjoxNDkyMjQyNzk3fQ.eyJpZCI6MX0.7EFwSyWPNVsDyZhA8Hhj4yzqOK7FfRhIyEaeLtQ-fnw"
+	  },
+	  "status": 0
 	}
 
 **You should set the `token` into HTTP header using key-value `token:TOKEN_STRING` to access following resource**
@@ -150,6 +153,20 @@ or
 	  "status": 0
 	}
 
+### free table
+`/table/free`
+
+**request** `POST` `Admin`
+
+	{
+		"table_id":1
+	}
+
+**response**
+
+	{
+		'status':0
+	}
 
 ## Menu
 
@@ -253,36 +270,71 @@ or
 
 **response**
 
+```json
+{
+  "data": {
+    "amount": 9,
+    "createdAt": "2017-04-12 17:16:05",
+    "id": 95,
+    "menus": [
+      {
+        "category": null,
+        "id": 1,
+        "name": "Douglas Stewart",
+        "price": 1,
+        "subcategory": null
+      },
+      {
+        "category": null,
+        "id": 3,
+        "name": "John Meszaros",
+        "price": 3,
+        "subcategory": null
+      },
+      {
+        "category": null,
+        "id": 5,
+        "name": "Melinda Carrasco",
+        "price": 5,
+        "subcategory": null
+      }
+    ],
+    "table_id": 34,
+    "uid": 31
+  },
+  "status": 0
+}
+```
+
+## Admin
+
+### login
+
+`/admin/login`
+
+**request** `POST`
+
+	{
+		"password":"this is a password", 
+		"username":"this is a username"
+	}
+
+**response** 
+
+	{
+		"status":ERROR_CODE
+	} 
+
+or 
+
 	{
 	  "data": {
-	    "amount": 9,
-	    "createdAt": "2017-04-12 17:16:05",
-	    "id": 95,
-	    "menus": [
-	      {
-	        "category": null,
-	        "id": 1,
-	        "name": "Douglas Stewart",
-	        "price": 1,
-	        "subcategory": null
-	      },
-	      {
-	        "category": null,
-	        "id": 3,
-	        "name": "John Meszaros",
-	        "price": 3,
-	        "subcategory": null
-	      },
-	      {
-	        "category": null,
-	        "id": 5,
-	        "name": "Melinda Carrasco",
-	        "price": 5,
-	        "subcategory": null
-	      }
-	    ],
-	    "table_id": 34,
-	    "uid": 31
+	    "age": null,
+	    "avatar": null,
+	    "gender": null,
+	    "id": 1,
+	    "name": "sss",
+	    "token": "eyJhbGciOiJIUzI1NiIsImV4cCI6MTQ5ODI0Mjc5NywiaWF0IjoxNDkyMjQyNzk3fQ.eyJpZCI6MX0.7EFwSyWPNVsDyZhA8Hhj4yzqOK7FfRhIyEaeLtQ-fnw"
 	  },
 	  "status": 0
 	}
