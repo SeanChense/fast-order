@@ -1,5 +1,5 @@
 import sys 
-sys.path.append('../') 
+sys.path.append('/home/ubuntu/work/fast-order') 
 import secret_config
 from Menu import *
 from DinnerTable import *

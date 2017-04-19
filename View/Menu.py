@@ -1,5 +1,5 @@
 import sys 
-sys.path.append('..') 
+sys.path.append('/home/ubuntu/work/fast-order') 
 
 from flask import Flask, request, Blueprint
 from flask import jsonify

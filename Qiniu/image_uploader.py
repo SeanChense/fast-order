@@ -6,7 +6,7 @@ import qiniu.config
 import uuid
 
 import sys 
-sys.path.append('..') 
+sys.path.append('/home/ubuntu/work/fast-order') 
 import secret_config
 
 #需要填写你的 Access Key 和 Secret Key
@@ -30,5 +30,5 @@ def upload_img(key, localfile):
 
 
 # key = uuid.uuid1()
-# upload_img(key, "../test.png")
+# upload_img(key, "/home/ubuntu/work/fast-order/test.png")
 # print 'url is http://oofm3g268.bkt.clouddn.com/'+str(key)
