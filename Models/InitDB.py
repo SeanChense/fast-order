@@ -90,11 +90,11 @@ def clearOrder():
 		
 def initDB():
 	# clear()
-	# addUser()
+	addUser()
 	# addTables()
 	# updateTables()
 	# addMenus()
-	addOrder()
+	# addOrder()
 	# clearOrder()
 
 initDB()
