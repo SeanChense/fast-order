@@ -20,5 +20,5 @@ app.register_blueprint(Order.mod)
 app.register_blueprint(Admin.mod)
 
 if __name__ == "__main__":
-	app.run()
+	app.run(host="0.0.0.0", port="80")
 
