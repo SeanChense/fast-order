@@ -89,12 +89,12 @@ def clearOrder():
 	session.commit()
 		
 def initDB():
-	# clear()
+	clear()
 	addUser()
-	# addTables()
+	addTables()
 	# updateTables()
-	# addMenus()
-	# addOrder()
+	addMenus()
+	addOrder()
 	# clearOrder()
 
 initDB()
