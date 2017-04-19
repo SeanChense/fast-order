@@ -2,3 +2,4 @@ qiniu
 request
 flask-mysql
 Flask-SQLAlchemy
+python-mysqldb
