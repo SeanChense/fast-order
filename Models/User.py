@@ -74,6 +74,9 @@ class User(Base):
         except BadSignature:
             return -2 # invalid token
         user = User.user_filter_id(data['id'])
+
+        if not user:
+            return -3
         return user
 
     def __str__(self):

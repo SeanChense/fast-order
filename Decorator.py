@@ -16,7 +16,7 @@ def login_required(f):
 		user  = User.verify_auth_token(token)
 		if user == -1:
 			return jsonify({"status" : ErrorCode.err_token_expired})
-		if user == -2:
+		if user == -2 or user == -3:
 			return jsonify({"status" : ErrorCode.err_token_invalid})
 		return f(user)
     return decorated_function
@@ -31,7 +31,7 @@ def admin_required(f):
 		admin  = Admin.verify_auth_token(token)
 		if admin == -1:
 			return jsonify({"status" : ErrorCode.err_token_expired})
-		if admin == -2:
+		if admin == -2 or admin == -3:
 			return jsonify({"status" : ErrorCode.err_token_invalid})
 		return f(admin)
 	return decorated_function
