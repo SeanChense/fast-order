@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#coding:utf-8
 import sys 
 sys.path.append('..') 
 import secret_config
@@ -35,12 +37,25 @@ class Admin(Base):
     password= Column(String(100))
     avatar  = Column(TEXT)
     token   = Column(TEXT)
-    def __init__(self, name, password, age=None, gender=None, avatar=None):
+    title   = Column(String(100))
+#   1       superadmin/boss
+#   2       waiter/waitress
+#   3       cook
+    permission = Column(Integer)
+    def __init__(self, name, password, permission, age=None, gender=None, avatar=None):
         self.name = name
         self.age  = age
         self.gender     = gender
         self.password   = password
         self.avatar     = avatar
+        self.permission = permission
+
+        if permission == 1:
+            self.title = '超级管理员'
+        if permission == 2:
+            self.title = '服务员'
+        if permission == 3:
+            self.title = '后厨'
 
     def generate_auth_token(self, expiration = 6000000):
         s = Serializer(secret_config.SECRET_KEY, expires_in = expiration)
@@ -75,4 +90,8 @@ class Admin(Base):
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 Base.metadata.create_all(engine)
+
+# boss = Admin('法国大厨', 'password', 3)
+# session.add(boss)
+# session.commit()
 

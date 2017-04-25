@@ -7,6 +7,7 @@ from flask import Flask, request, Blueprint
 from flask import jsonify
 from Models.Restaurant import Restaurant
 from Models.ErrorCode import *
+from Decorator import *
 
 mod = Blueprint('Restaurant', __name__, url_prefix='/restaurant')
 
@@ -18,8 +19,8 @@ def main():
 		})
 
 @mod.route('/', methods = ['POST'])
-# @admin_required
-def modify():
+@superadmin_required
+def modify(admin):
 	name = request.form['name'].encode('utf-8')
 	address = request.form['address'].encode('utf-8')
 	

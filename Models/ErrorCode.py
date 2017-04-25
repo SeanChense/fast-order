@@ -18,4 +18,5 @@ err_order_not_found		= 1013
 err_table_not_found		= 1014
 
 err_restaurant_name_null= 1015
+err_permission_denied	= 1016
 

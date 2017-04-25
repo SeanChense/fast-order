@@ -21,7 +21,7 @@ def login_required(f):
 		return f(user)
     return decorated_function
 
-def admin_required(f):
+def superadmin_required(f):
 	@wraps(f)
 	def decorated_function(*args, **kwargs):
 		token = request.headers.get('token')
@@ -33,5 +33,29 @@ def admin_required(f):
 			return jsonify({"status" : ErrorCode.err_token_expired})
 		if admin == -2 or admin == -3:
 			return jsonify({"status" : ErrorCode.err_token_invalid})
+
+		if admin.permission > 1:
+			return jsonify({'status': ErrorCode.err_permission_denied})
+
 		return f(admin)
 	return decorated_function
+
+def waiter_required(f):
+	@wraps(f)
+	def decorated_function(*args, **kwargs):
+		token = request.headers.get('token')
+		if not token:
+			return jsonify({"status" : ErrorCode.err_token_null})
+
+		admin  = Admin.verify_auth_token(token)
+		if admin == -1:
+			return jsonify({"status" : ErrorCode.err_token_expired})
+		if admin == -2 or admin == -3:
+			return jsonify({"status" : ErrorCode.err_token_invalid})
+
+		if admin.permission > 2:
+			return jsonify({'status': ErrorCode.err_permission_denied})
+
+		return f(admin)
+	return decorated_function
+
