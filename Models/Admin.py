@@ -18,7 +18,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
 
 engineArgs = 'mysql://' + secret_config.database_user + ":" + \
-    secret_config.database_pass + "@localhost/" + secret_config.database_name
+    secret_config.database_pass + "@localhost/" + secret_config.database_name + '?charset=utf8'
 engine = create_engine(engineArgs)
 Base = declarative_base()
 

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#coding:utf-8
 import sys 
 sys.path.append('..') 
 import secret_config
@@ -14,11 +16,9 @@ from sqlalchemy.dialects.mysql import \
         LONGBLOB, LONGTEXT, MEDIUMBLOB, MEDIUMINT, MEDIUMTEXT, NCHAR, \
         NUMERIC, NVARCHAR, REAL, SET, SMALLINT, TEXT, TIME, TIMESTAMP, \
         TINYBLOB, TINYINT, TINYTEXT, VARBINARY, VARCHAR, YEAR
-from itsdangerous import (TimedJSONWebSignatureSerializer
-                          as Serializer, BadSignature, SignatureExpired)
 
 engineArgs = 'mysql://' + secret_config.database_user + ":" + \
-    secret_config.database_pass + "@localhost/" + secret_config.database_name + '?charset=utf8'
+    secret_config.database_pass + "@localhost/" + secret_config.database_name + '?charset=utf8' + '?charset=utf8'
 engine = create_engine(engineArgs)
 Base = declarative_base()
 
@@ -26,37 +26,33 @@ session = sessionmaker(bind=engine)
 session = session()
 
 
-class Menu(Base):
-    __tablename__ = 'Menu'
+class Restaurant(Base):
+    __tablename__ = 'Restaurant'
     id      = Column(Integer, primary_key=True)
     name    = Column(String(100))
-    category= Column(Integer)
-    subcategory = Column(Integer)
-    price	= Column(FLOAT)
-  
+    address = Column(TEXT)
 
-    def __init__(self, name, price):
+    def __init__(self, name, address):
         self.name = name
-        self.price = price
+        self.address = address
 
-    def menu_save(self):
+    def rrt_save(self):
         session.add(self)
         session.commit()
 
-    @staticmethod 
-    def menu_filter_id(id):
-        menu = session.query(Menu).get(id)
-        return menu
+    def rrt_update(self):
+        session.commit()
 
     @staticmethod
-    def menus():
-        menus = session.query(Menu).all()
-        return menus 
+    def rrt():
+        rrt = session.query(Restaurant).first()
+        print rrt
+        return rrt
 
     def __str__(self):
         return "%s" % self.as_dict()
-
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 Base.metadata.create_all(engine)
+
 

@@ -1,7 +1,10 @@
+#!/usr/bin/python
+#coding:utf-8
 from User import *
 from DinnerTable import *
 from Menu import *
 from Order import *
+from Restaurant import *
 import names
 import random
 
@@ -87,15 +90,19 @@ def clearOrder():
 	for order in Order.orders():
 		session.delete(order)
 	session.commit()
+
+def addRrt():
+	rrt = Restaurant(u'四海一家'.encode('utf-8'), u'春熙路'.encode('utf-8'))	
+	rrt.rrt_save()
 		
 def initDB():
-	clear()
-	addUser()
-	addTables()
+	# clear()
+	# addUser()
+	# addTables()
 	# updateTables()
-	addMenus()
-	addOrder()
+	# addMenus()
+	# addOrder()
 	# clearOrder()
-
+	addRrt()
 initDB()
 # clear()

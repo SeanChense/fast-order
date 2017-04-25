@@ -11,13 +11,14 @@ app.config['MYSQL_DATABASE_HOST'] = secret_config.database_host
 mysql.init_app(app)
 
 
-from View import User, DinnerTable, Menu, Order, Admin
+from View import User, DinnerTable, Menu, Order, Admin, Restaurant
 
 app.register_blueprint(User.mod)
 app.register_blueprint(DinnerTable.mod)
 app.register_blueprint(Menu.mod)
 app.register_blueprint(Order.mod)
 app.register_blueprint(Admin.mod)
+app.register_blueprint(Restaurant.mod)
 
 if __name__ == "__main__":
 	# app.run(host="127.0.0.1", port="80")
