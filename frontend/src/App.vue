@@ -28,7 +28,7 @@ export default {
                 console.log(response)
               })
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'TEST欢迎使用餐饮点餐系统?'
     }
   },
 
