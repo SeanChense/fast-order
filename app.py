@@ -1,6 +1,7 @@
 import secret_config
 from flask import Flask
 from flaskext.mysql import MySQL
+from flask import render_template
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -20,7 +21,15 @@ app.register_blueprint(Order.mod)
 app.register_blueprint(Admin.mod)
 app.register_blueprint(Restaurant.mod)
 
+@app.route('/', methods = ['GET'])
+def index():
+	return render_template('index.html')
+
+@app.route('/__webpack_hmr')
+def npm():
+    return redirect('http://localhost:8080/__webpack_hmr')
+
 if __name__ == "__main__":
-	# app.run(host="127.0.0.1", port="80")
-	app.run()
+	app.run(host="127.0.0.1", port="8080")
+	# app.run()
 
