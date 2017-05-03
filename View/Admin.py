@@ -3,7 +3,7 @@ sys.path.append('..')
 
 from flask import Flask, request, Blueprint
 from flask import jsonify
-from Decorator import login_required
+from Decorator import *
 from Models.Admin import Admin
 from Models.ErrorCode import *
 
@@ -33,3 +33,14 @@ def login():
 		"data" : data
 		}
 		return jsonify(resp)	
+
+
+@mod.route('/admin/menu.html', methods = ['GET'])
+@superadmin_required
+def menu():
+	return render_template('menu.html')
+
+@mod.route('/admin/table.html', methods = ['GET'])
+@superadmin_required
+def table():
+	return render_template('table.html')
