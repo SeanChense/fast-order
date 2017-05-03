@@ -25,6 +25,29 @@ app.register_blueprint(Restaurant.mod)
 def index():
 	return render_template('index.html')
 
+from Models.Restaurant import Restaurant
+from Decorator import *
+
+@app.route('/dashboard', methods = ['GET'])
+# @superadmin_required
+def dashboard():
+	rrt = Restaurant.rrt()
+	return render_template('dashboard.html', name=rrt.name)
+
+
+
+@app.route('/admin/menu.html', methods = ['GET'])
+# @superadmin_required
+def menu():
+	return render_template('menu.html')
+
+
+
+@app.route('/admin/table.html', methods = ['GET'])
+# @superadmin_required
+def table():
+	return render_template('table.html')
+
 if __name__ == "__main__":
 	app.run(host="127.0.0.1", port="8080")
 	# app.run()
