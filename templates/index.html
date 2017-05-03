@@ -1,11 +1,49 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>餐饮点餐管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>餐饮后台管理系统</title>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/signin.css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="static/js/jquery.min.js"></script>
   </head>
+
   <body>
-    <div id="app"></div>
-    <script src="static/js/build.js"></script>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">餐饮后台管理系统</h2>
+        <input type="text" id="inputUsername" class="form-control" placeholder="用户名" required autofocus>
+        <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <button id='button' class="btn btn-lg btn-primary btn-block">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+    
+    
+    <script>
+		$(document).ready(function() {
+			$("button").click(function() {
+				var username = document.getElementById('inputUsername').value 
+				var password = document.getElementById('inputPassword').value 
+				
+				$.post('admin/login', {"username" : username, "password" : password})
+				.done(function (data){
+					console.log('data is ' + JSON.stringify(data))
+				})
+			
+				
+
+			})
+		})
+    	
+    </script>
   </body>
 </html>

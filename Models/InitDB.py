@@ -100,7 +100,7 @@ def initDB():
 	# addUser()
 	# addTables()
 	# updateTables()
-	# addMenus()
+	addMenus()
 	# addOrder()
 	# clearOrder()
 	addRrt()
