@@ -28,8 +28,6 @@ def superadmin_required(f):
 	@wraps(f)
 	def decorated_function(*args, **kwargs):
 		token = request.headers.get('Cookie').split(";")[1].split("=")[1]
-
-		print token
 		if not token:
 			return jsonify({"status" : ErrorCode.err_token_null})
 

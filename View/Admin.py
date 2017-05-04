@@ -3,6 +3,7 @@ sys.path.append('..')
 
 from flask import Flask, request, Blueprint
 from flask import jsonify
+from flask import render_template
 from Decorator import *
 from Models.Admin import Admin
 from Models.ErrorCode import *
@@ -39,12 +40,12 @@ def login():
 
 
 
-@mod.route('/admin/menu.html', methods = ['GET'])
+@mod.route('/menu.html', methods = ['GET'])
 @superadmin_required
 def menu(admin):
 	return render_template('menu.html')
 
-@mod.route('/admin/table.html', methods = ['GET'])
+@mod.route('/table.html', methods = ['GET'])
 @superadmin_required
 def table(admin):
 	return render_template('table.html')
