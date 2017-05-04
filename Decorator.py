@@ -6,10 +6,13 @@ from Models.User import User
 from Models.Admin import Admin
 from Models import ErrorCode
 
+
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-		token = request.headers.get('token')
+		token = request.headers.get('Cookie')['authed']
+		print token
 		if not token:
 			return jsonify({"status" : ErrorCode.err_token_null})
 
@@ -24,7 +27,9 @@ def login_required(f):
 def superadmin_required(f):
 	@wraps(f)
 	def decorated_function(*args, **kwargs):
-		token = request.headers.get('token')
+		token = request.headers.get('Cookie').split(";")[1].split("=")[1]
+
+		print token
 		if not token:
 			return jsonify({"status" : ErrorCode.err_token_null})
 

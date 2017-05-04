@@ -32,15 +32,19 @@ def login():
 		resp = { "status":0,
 		"data" : data
 		}
-		return jsonify(resp)	
+		out = jsonify(resp)
+		out.set_cookie('authed', admin.token)
+
+		return out	
+
 
 
 @mod.route('/admin/menu.html', methods = ['GET'])
 @superadmin_required
-def menu():
+def menu(admin):
 	return render_template('menu.html')
 
 @mod.route('/admin/table.html', methods = ['GET'])
 @superadmin_required
-def table():
+def table(admin):
 	return render_template('table.html')

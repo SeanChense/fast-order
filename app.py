@@ -15,14 +15,14 @@ app.config['MYSQL_DATABASE_HOST'] = secret_config.database_host
 mysql.init_app(app)
 
 
-from View import User, DinnerTable, Menu, Order, Admin, Restaurant
+from View import User, DinnerTable, Menu, Order, Admin, RestaurantView
 
 app.register_blueprint(User.mod)
 app.register_blueprint(DinnerTable.mod)
 app.register_blueprint(Menu.mod)
 app.register_blueprint(Order.mod)
 app.register_blueprint(Admin.mod)
-app.register_blueprint(Restaurant.mod)
+app.register_blueprint(RestaurantView.mod)
 
 @app.route('/', methods = ['GET'])
 def index():
@@ -30,11 +30,9 @@ def index():
 
 @app.route('/dashboard', methods = ['GET'])
 @superadmin_required
-def dashboard():
+def dashboard(admin):
 	rrt = Restaurant.rrt()
-	return render_template('dashboard.html', name=rrt.name)
-
-
+	return render_template('dashboard.html', name=admin.name)
 
 
 

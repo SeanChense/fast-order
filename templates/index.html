@@ -28,13 +28,16 @@
     
     <script>
 		$(document).ready(function() {
-			$("button").click(function() {
+			$("button").click(function(e) {
+				e.preventDefault();
 				var username = document.getElementById('inputUsername').value 
 				var password = document.getElementById('inputPassword').value 
 				
 				$.post('admin/login', {"username" : username, "password" : password})
-				.done(function (data){
-					console.log('data is ' + JSON.stringify(data))
+				.done(function (data, status, xhr){
+					if (data["status"] === 0) {
+						window.location.replace("dashboard")
+					}
 				})
 			})
 		})

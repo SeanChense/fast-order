@@ -33,7 +33,11 @@ def login():
 		resp = { "status":0,
 		"data" : data
 		}
-		return jsonify(resp)
+		out = jsonify(resp)
+		out.set_cookie('authed', user.token)
+		print out.headers
+		return out
+		
 
 @mod.route("/register", methods = ["POST"])
 def register():

@@ -97,12 +97,12 @@ def addRrt():
 		
 def initDB():
 	# clear()
-	# addUser()
+	addUser()
 	# addTables()
 	# updateTables()
-	addMenus()
+	# addMenus()
 	# addOrder()
 	# clearOrder()
-	addRrt()
+	# addRrt()
 initDB()
 # clear()
