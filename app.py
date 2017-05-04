@@ -40,7 +40,7 @@ def index():
 @superadmin_required
 def dashboard(admin):
 	rrt = Restaurant.rrt()
-	return render_template('dashboard.html', name=admin.name)
+	return render_template('dashboard.html', name=rrt.name)
 
 
 
