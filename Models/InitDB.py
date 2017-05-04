@@ -74,9 +74,21 @@ def updateTables():
 	print "update table %s" % random_table
 
 def addMenus():
-	for x in xrange(1,10):
+	avatars = \
+	("http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_7926ec20-dd34-11e5-bfb9-cfe874d78ed7/banner_img_1459825668511.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_-KCIu2C8d0VKakRE0WS2/banner_img_1459826335108.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_11191720-ecde-11e5-be0c-736255f75a6a/banner_img_1459826315532.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_-KDMAcL0eOHqveMxdZ5Z/banner_img_1463520112187.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_0a870340-f96d-11e5-995c-1f7a52dfd439/banner_img_1459668323686.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_1ca204f0-f99d-11e5-9596-f1927f4bd785/banner_img_1459763801650.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_470418e0-fc8c-11e5-9952-253f4304608b/banner_img_1460036239140.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_0720b1e0-0130-11e6-b9ce-ffaedafbed0a/banner_img_1460525692417.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_90d5e690-0562-11e6-91ae-416a68add056/banner_img_1460983583593.jpg",
+	"http://xiaobandeng-production.img-cn-hangzhou.aliyuncs.com/talks/talk_b9bf8c40-0dec-11e6-96d3-9b6ed08c86ad/banner_img_1461924473392.jpg")
+	for x in avatars:
 		menu = Menu(names.get_full_name(), 
-			x)
+			10)
+		menu.image = x
 		session.add(menu)
 		session.commit()
 		print menu
@@ -97,10 +109,10 @@ def addRrt():
 		
 def initDB():
 	# clear()
-	addUser()
+	# addUser()
 	# addTables()
 	# updateTables()
-	# addMenus()
+	addMenus()
 	# addOrder()
 	# clearOrder()
 	# addRrt()

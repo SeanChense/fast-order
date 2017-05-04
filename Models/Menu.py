@@ -33,6 +33,7 @@ class Menu(Base):
     category= Column(Integer)
     subcategory = Column(Integer)
     price	= Column(FLOAT)
+    image   = Column(TEXT)
   
 
     def __init__(self, name, price):

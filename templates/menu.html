@@ -117,8 +117,11 @@ var TableInit = function () {
             columns: [{
                 checkbox: true
             }, {
-                field: 'id',
-                title: '图片'
+                field: 'image',
+                title: '图片',
+                formatter: function imageFormatter(value, row, index) {
+                                return "<img src='" + value + "' style='width:100px; height:100px;' />";  
+                          }
             }, {
                 field: 'name',
                 title: '名字'
