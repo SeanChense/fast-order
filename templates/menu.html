@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>餐饮后台管理系统</title>
-    <script language="JavaScript" type="text/javascript" src="static/js/jquery.min.js"></script>
-    
-    <script src="static/js/bootstrap-table.js"></script>
-    <link href="static/css/bootstrap-table.css" rel="stylesheet" />
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -44,12 +41,15 @@
     var oTable = new TableInit();
     oTable.Init();
 
+    $('#tb_menu').editable()
+
     //2.初始化Button的点击事件
     var oButtonInit = new ButtonInit();
     oButtonInit.Init();
 
     $('#btn_delete').click(function(){
         var menu = $('#tb_menu').bootstrapTable('getSelections')
+        if (menu[0] == null) {return}
         var menu_ids = []
         $.each(menu, function(index, value) {
             menu_ids.push(value.id)
@@ -108,7 +108,12 @@ var TableInit = function () {
                           }
             }, {
                 field: 'name',
-                title: '名字'
+                title: '名字',
+                editable: {
+                    mode: "inline",
+                    type: "textarea",
+                    title: "请输入内容"
+                }
             }, {
                 field: 'category',
                 title: '类别'
