@@ -97,45 +97,38 @@ var TableInit = function () {
                 };
             },
             columns: [{
-                field: 'state',
-                title: '',
                 checkbox: true
             }, {
+                field: 'image',
+                title: '图片',
+                formatter: function imageFormatter(value, row, index) {
+                                return "<img src='" + value + "' style='width:100px; height:100px;' />";  
+                          }
+            }, {
                 field: 'name',
-                title: 'names',
-                sortable: true,
+                title: '名字',
+                editable: {
+                    type: "text",
+                    title: "请输入内容"
+                }
+            }, {
+                field: 'category',
+                title: '类别',
                 editable: {
                     type: 'select',
-                    source: [
-                        {value: 'active', text: 'Active'},
-                        {value: 'blocked', text: 'Blocked'},
-                        {value: 'deleted', text: 'Deleted'}
-                    ]
+                    title: '类别',
+                    source:[{
+                        value:"1",text:"川菜"
+                    }, {
+                        value:"2",text:"粤菜"
+                    }, {
+                        value:"3",text:"鲁菜"
+                    }]
                 }
+            }, {
+                field: 'price',
+                title: '价格'
             }]
-            // columns: [{
-            //     checkbox: true
-            // }, {
-            //     field: 'image',
-            //     title: '图片',
-            //     formatter: function imageFormatter(value, row, index) {
-            //                     return "<img src='" + value + "' style='width:100px; height:100px;' />";  
-            //               }
-            // }, {
-            //     field: 'name',
-            //     title: '名字',
-            //     editable: {
-            //         mode: "inline",
-            //         type: "textarea",
-            //         title: "请输入内容"
-            //     }
-            // }, {
-            //     field: 'category',
-            //     title: '类别'
-            // }, {
-            //     field: 'price',
-            //     title: '价格'
-            // }]
         });
     };
 
