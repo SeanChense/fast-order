@@ -6,6 +6,7 @@ from flask import jsonify
 from Decorator import *
 from Models.Menu import Menu
 from Models.ErrorCode import *
+import json
 
 mod = Blueprint('Menu', __name__, url_prefix='/menu')
 
@@ -36,16 +37,20 @@ def menus_detail():
 		'data':menu.as_dict()
 		})
 
-@mod.route("/delete", methods = [POST])
-@superadmin_required
-def delete_menu(admin):
+@mod.route("/delete", methods = ['POST'])
+# @superadmin_required
+def delete_menu():
 	menu_ids = request.form['menu_ids']
-	if not menu_ids
+	menu_ids = json.loads(menu_ids)
+	if not menu_ids:
 		return jsonify({
 			"status": ErrorCode.err_menusid_null
 			})
+	Menu.delete_menu_by_ids(menu_ids)
 
-	Menu.
+	return jsonify({
+		"status":0
+		})
 
 
 

@@ -49,7 +49,16 @@
     oButtonInit.Init();
 
     $('#btn_delete').click(function(){
-        alert($('#tb_menu').bootstrapTable('getSelections'));
+        var menu = $('#tb_menu').bootstrapTable('getSelections')
+        var menu_ids = []
+        $.each(menu, function(index, value) {
+            menu_ids.push(value.id)
+        })
+
+        $.post("menu/delete", {"menu_ids" : JSON.stringify(menu_ids)})
+        .done(function() {
+            $('#tb_menu').bootstrapTable('refresh')
+        })
     })
 
 

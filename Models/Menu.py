@@ -52,6 +52,7 @@ class Menu(Base):
     @staticmethod
     def delete_menu_by_ids(ids):
         for _id in ids:
+            print "goint to delete menu " + str(_id)
             session.query(Menu).filter_by(id=_id).delete()
 
         session.commit()

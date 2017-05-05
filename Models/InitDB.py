@@ -108,16 +108,16 @@ def addRrt():
 	rrt.rrt_save()
 		
 def delete_menu():
-	Menu.delete_menu_by_ids(['39', '40'])
+	Menu.delete_menu_by_ids(['10', '40'])
 def initDB():
 	# clear()
 	# addUser()
 	# addTables()
 	# updateTables()
-	# addMenus()
+	addMenus()
 	# addOrder()
 	# clearOrder()
 	# addRrt()
-	delete_menu()
+	# delete_menu()
 initDB()
 # clear()
