@@ -3,7 +3,7 @@ sys.path.append('..')
 
 from flask import Flask, request, Blueprint
 from flask import jsonify
-from Decorator import login_required
+from Decorator import *
 from Models.Menu import Menu
 from Models.ErrorCode import *
 
@@ -35,3 +35,26 @@ def menus_detail():
 		'status':0,
 		'data':menu.as_dict()
 		})
+
+@mod.route("/delete", methods = [POST])
+@superadmin_required
+def delete_menu(admin):
+	menu_ids = request.form['menu_ids']
+	if not menu_ids
+		return jsonify({
+			"status": ErrorCode.err_menusid_null
+			})
+
+	Menu.
+
+
+
+
+
+
+
+
+
+
+
+

@@ -107,14 +107,17 @@ def addRrt():
 	rrt = Restaurant(u'四海一家'.encode('utf-8'), u'春熙路'.encode('utf-8'))	
 	rrt.rrt_save()
 		
+def delete_menu():
+	Menu.delete_menu_by_ids(['39', '40'])
 def initDB():
 	# clear()
 	# addUser()
 	# addTables()
 	# updateTables()
-	addMenus()
+	# addMenus()
 	# addOrder()
 	# clearOrder()
 	# addRrt()
+	delete_menu()
 initDB()
 # clear()
