@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>餐饮后台管理系统</title>
-
+    
+    <script src="static/editable/js/bootstrap-editable.js"></script>
+    <script src="static/extension/bootstrap-table-editable.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -34,35 +36,31 @@
     </div>
     
     <script>
+    
 
     $(document).ready($(function () {
+        //1.初始化Table
+        var oTable = new TableInit();
+        oTable.Init();
 
-    //1.初始化Table
-    var oTable = new TableInit();
-    oTable.Init();
+        //2.初始化Button的点击事件
+        var oButtonInit = new ButtonInit();
+        oButtonInit.Init();
 
-    $('#tb_menu').editable()
+        $('#btn_delete').click(function(){
+            var menu = $('#tb_menu').bootstrapTable('getSelections')
+            if (menu[0] == null) {return}
+            var menu_ids = []
+            $.each(menu, function(index, value) {
+                menu_ids.push(value.id)
+            })
 
-    //2.初始化Button的点击事件
-    var oButtonInit = new ButtonInit();
-    oButtonInit.Init();
-
-    $('#btn_delete').click(function(){
-        var menu = $('#tb_menu').bootstrapTable('getSelections')
-        if (menu[0] == null) {return}
-        var menu_ids = []
-        $.each(menu, function(index, value) {
-            menu_ids.push(value.id)
+            $.post("menu/delete", {"menu_ids" : JSON.stringify(menu_ids)})
+            .done(function() {
+                $('#tb_menu').bootstrapTable('refresh')
+            })
         })
-
-        $.post("menu/delete", {"menu_ids" : JSON.stringify(menu_ids)})
-        .done(function() {
-            $('#tb_menu').bootstrapTable('refresh')
-        })
-    })
-
-
-}))
+    }))
       
 
 
@@ -85,7 +83,7 @@ var TableInit = function () {
             showColumns: false,                  //是否显示所有的列
             showRefresh: false,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
-            clickToSelect: true,                //是否启用点击选中行
+            clickToSelect: false,                //是否启用点击选中行
             height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
             showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
@@ -99,28 +97,45 @@ var TableInit = function () {
                 };
             },
             columns: [{
+                field: 'state',
+                title: '',
                 checkbox: true
             }, {
-                field: 'image',
-                title: '图片',
-                formatter: function imageFormatter(value, row, index) {
-                                return "<img src='" + value + "' style='width:100px; height:100px;' />";  
-                          }
-            }, {
                 field: 'name',
-                title: '名字',
+                title: 'names',
+                sortable: true,
                 editable: {
-                    mode: "inline",
-                    type: "textarea",
-                    title: "请输入内容"
+                    type: 'select',
+                    source: [
+                        {value: 'active', text: 'Active'},
+                        {value: 'blocked', text: 'Blocked'},
+                        {value: 'deleted', text: 'Deleted'}
+                    ]
                 }
-            }, {
-                field: 'category',
-                title: '类别'
-            }, {
-                field: 'price',
-                title: '价格'
             }]
+            // columns: [{
+            //     checkbox: true
+            // }, {
+            //     field: 'image',
+            //     title: '图片',
+            //     formatter: function imageFormatter(value, row, index) {
+            //                     return "<img src='" + value + "' style='width:100px; height:100px;' />";  
+            //               }
+            // }, {
+            //     field: 'name',
+            //     title: '名字',
+            //     editable: {
+            //         mode: "inline",
+            //         type: "textarea",
+            //         title: "请输入内容"
+            //     }
+            // }, {
+            //     field: 'category',
+            //     title: '类别'
+            // }, {
+            //     field: 'price',
+            //     title: '价格'
+            // }]
         });
     };
 
