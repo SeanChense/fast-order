@@ -58,6 +58,15 @@ class Menu(Base):
         session.commit()
 
     @staticmethod
+    def update_menu_by_id(id, payload):
+        menu = Menu.menu_filter_id(id)
+        if not menu:
+            return
+        for (key, value) in payload.iteritems():
+            setattr(menu, key, value)
+        session.commit()
+
+    @staticmethod
     def menus():
         menus = session.query(Menu).all()
         return menus 
@@ -68,4 +77,5 @@ class Menu(Base):
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 Base.metadata.create_all(engine)
+
 

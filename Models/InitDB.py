@@ -109,15 +109,19 @@ def addRrt():
 		
 def delete_menu():
 	Menu.delete_menu_by_ids(['10', '40'])
+
+def update_menu_by_id():
+	Menu.update_menu_by_id(10, {"name":"newname", "price":100})
 def initDB():
 	# clear()
 	# addUser()
 	# addTables()
 	# updateTables()
-	addMenus()
+	# addMenus()
 	# addOrder()
 	# clearOrder()
 	# addRrt()
 	# delete_menu()
+	update_menu_by_id()
 initDB()
 # clear()

@@ -38,8 +38,8 @@ def menus_detail():
 		})
 
 @mod.route("/delete", methods = ['POST'])
-# @superadmin_required
-def delete_menu():
+@superadmin_required
+def delete_menu(admin):
 	menu_ids = request.form['menu_ids']
 	menu_ids = json.loads(menu_ids)
 	if not menu_ids:
@@ -51,6 +51,33 @@ def delete_menu():
 	return jsonify({
 		"status":0
 		})
+
+
+@mod.route("/update", methods = ['POST'])
+@superadmin_required
+def update_menu(admin):
+	menu_id = request.form['menu_id']
+	newDict = json.loads(request.form['dict'])
+	
+	if not menu_id:
+		return jsonify({
+			"status":ErrorCode.err_menuid_null
+			})
+
+	if not newDict:
+		return jsonify({
+			"status":ErrorCode.err_menu_update_payload_null
+			})
+
+	Menu.update_menu_by_id(menu_id, newDict)
+
+	return jsonify({
+		"status":0
+		})
+
+
+
+
 
 
 

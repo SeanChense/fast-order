@@ -127,7 +127,20 @@ var TableInit = function () {
                 }
             }, {
                 field: 'price',
-                title: '价格'
+                title: '价格',
+                editable: {
+                    type: "text",
+                    title: "请输入内容",
+                    url: 'menu/update',
+                    params: function(params) {
+                        return {
+                            "menu_id":10,
+                            "dict":JSON.stringify({
+                                "price":params.value
+                            })
+                        }
+                    }
+                }
             }]
         });
     };

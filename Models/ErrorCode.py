@@ -20,5 +20,7 @@ err_table_not_found		= 1014
 err_restaurant_name_null= 1015
 err_permission_denied	= 1016
 
+err_menu_update_payload_null = 1017
+
 
 
