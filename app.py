@@ -27,7 +27,13 @@ app.register_blueprint(RestaurantView.mod)
 
 @app.route('/', methods = ['GET'])
 def index():
-	token = request.headers.get('Cookie').split(";")[1].split("=")[1]
+	token = request.headers.get('Cookie')
+	print token
+	if token:
+		token = token.split(";")
+		print token
+		if token.count == 2:
+			token = token[1].split("=")[1]
 	if token:
 		admin  = Admin.verify_auth_token(token)
 		if admin != -1 and \
