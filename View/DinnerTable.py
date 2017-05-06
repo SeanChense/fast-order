@@ -19,7 +19,7 @@ def query_tables(admin):
 
 
 
-@mod.route('/free', methods = ['POST'])
+@mod.route('/free/', methods = ['POST'])
 @waiter_required
 def free_table(admin):
 	table_id = request.form['table_id']

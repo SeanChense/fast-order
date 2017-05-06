@@ -100,28 +100,37 @@
 	                title: '桌号'
 	            }, {
 	                field: 'uid',
-	                title: '绑定的用户 id'
+	                title: '绑定的用户 id',
+	                formatter: function imageFormatter(value, row, index) {
+                                if (!value) {
+                                	return "空"
+                                } else {
+                                	return value
+                                }
+                          },
+	                // editable: {
+	                // 	type:"text",
+	                // 	title:"输入想要绑定的用户 id"
+	                // }
 	            }, {
 	                field: 'available',
 	                title: '状态',
-	                // formatter: function (value, row, index) {
-                 //                if (value) {
-                 //                	return "可用"
-                 //                } else {
-                 //                	return "不可用"
-                 //                }
-                 //          },
 	                editable: {
 	                    type: 'select',
                     	title: '更改可用状态',
-                    	emptytext:"kkk",
 	                    source:[{
 	                        value:"0",
 	                        text:"不可用"
 	                    }, {
 	                        value:"1",
 	                        text:"可用"
-	                    }]
+	                    }],
+	                    url:'/table/free/',
+	                    params: function(params) {
+                        return {
+                            "table_id":params.pk
+                        }
+                    }
 	                }
 	            }]
 	        });
