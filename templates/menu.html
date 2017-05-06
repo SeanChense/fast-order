@@ -85,10 +85,11 @@ var TableInit = function () {
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: false,                //是否启用点击选中行
             height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+            uniqueId: "id",                     //每一行的唯一标识，一般为主键列
             showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
+            idField: 'id',
             responseHandler: function(res) {
                 console.log("res", res)
                 return {
@@ -98,6 +99,10 @@ var TableInit = function () {
             },
             columns: [{
                 checkbox: true
+            }, {
+                field: 'id',
+                title: 'item id',
+
             }, {
                 field: 'image',
                 title: '图片',
@@ -118,12 +123,26 @@ var TableInit = function () {
                     type: 'select',
                     title: '类别',
                     source:[{
-                        value:"1",text:"川菜"
+                        value:"1",
+                        text:"川菜"
                     }, {
-                        value:"2",text:"粤菜"
+                        value:"2",
+                        text:"粤菜"
                     }, {
-                        value:"3",text:"鲁菜"
-                    }]
+                        value:"3",
+                        text:"鲁菜"
+                    }],
+                    url: 'menu/update',
+                    params: function(params) {
+                        console.log(JSON.stringify(params))
+                        console.log(JSON.stringify($(this).row))
+                        return {
+                            "menu_id":params.pk,
+                            "dict":JSON.stringify({
+                                "category":params.value
+                            })
+                        }
+                    }
                 }
             }, {
                 field: 'price',
@@ -143,6 +162,8 @@ var TableInit = function () {
                 }
             }]
         });
+
+        $('#tb_menu').bootstrapTable("hideColumn", "id")
     };
 
     //得到查询的参数

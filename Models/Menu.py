@@ -30,8 +30,7 @@ class Menu(Base):
     __tablename__ = 'Menu'
     id      = Column(Integer, primary_key=True)
     name    = Column(String(100))
-    category= Column(Integer)
-    subcategory = Column(Integer)
+    category= Column(TEXT)
     price	= Column(FLOAT)
     image   = Column(TEXT)
   
