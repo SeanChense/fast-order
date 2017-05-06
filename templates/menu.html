@@ -107,14 +107,43 @@ var TableInit = function () {
                 field: 'image',
                 title: '图片',
                 formatter: function imageFormatter(value, row, index) {
-                                return "<img src='" + value + "' style='width:100px; height:100px;' />";  
+                                return "<img src='" + value + "' style='width:60px; height:60px;' />";  
                           }
+            }, {
+                field: 'image',
+                title: '图片 url',
+                formatter: function imageFormatter(value, row, index) {
+                                value = value.split("/").slice(-1)[0]
+                                return value
+                          },
+                editable: {
+                    type: "text",
+                    title: "请输入需要更新的图片链接",
+                    url: 'menu/update',
+                    params: function(params) {
+                        return {
+                            "menu_id":params.pk,
+                            "dict":JSON.stringify({
+                                "image":params.value
+                            })
+                        }
+                    }
+                }
             }, {
                 field: 'name',
                 title: '名字',
                 editable: {
                     type: "text",
-                    title: "请输入内容"
+                    title: "请输入内容",
+                    url: 'menu/update',
+                    params: function(params) {
+                        return {
+                            "menu_id":params.pk,
+                            "dict":JSON.stringify({
+                                "name":params.value
+                            })
+                        }
+                    }
                 }
             }, {
                 field: 'category',
@@ -134,8 +163,6 @@ var TableInit = function () {
                     }],
                     url: 'menu/update',
                     params: function(params) {
-                        console.log(JSON.stringify(params))
-                        console.log(JSON.stringify($(this).row))
                         return {
                             "menu_id":params.pk,
                             "dict":JSON.stringify({
@@ -153,7 +180,7 @@ var TableInit = function () {
                     url: 'menu/update',
                     params: function(params) {
                         return {
-                            "menu_id":10,
+                            "menu_id":params.pk,
                             "dict":JSON.stringify({
                                 "price":params.value
                             })
