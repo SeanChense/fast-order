@@ -13,11 +13,11 @@ import json
 mod = Blueprint('Menu', __name__, url_prefix='/menu')
 
 menucategory = [
+"今日推荐",\
 "盖浇饭",\
 "面食",\
 "炒饭",\
-"汤饭",\
-"今日推荐"
+"汤饭"
 ]
 
 @mod.route("/", methods = ['GET'])
