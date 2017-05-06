@@ -10,8 +10,8 @@ from Models.ErrorCode import *
 mod = Blueprint('DinnerTable', __name__, url_prefix='/table')
 
 @mod.route("/", methods = ['GET'])
-@login_required
-def query_tables():
+@waiter_required
+def query_tables(admin):
 	tables = []
 	for table in DinnerTable.tables():
 		tables.append(table.as_dict())

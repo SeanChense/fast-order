@@ -115,9 +115,9 @@ def update_menu_by_id():
 def initDB():
 	# clear()
 	# addUser()
-	# addTables()
+	addTables()
 	# updateTables()
-	addMenus()
+	# addMenus()
 	# addOrder()
 	# clearOrder()
 	# addRrt()
