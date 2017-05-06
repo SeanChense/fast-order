@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#coding:utf-8
 import sys 
 sys.path.append('..') 
 
@@ -10,10 +12,19 @@ import json
 
 mod = Blueprint('Menu', __name__, url_prefix='/menu')
 
+menucategory = [
+"盖浇饭",\
+"面食",\
+"炒饭",\
+"汤饭",\
+"今日推荐"
+]
+
 @mod.route("/", methods = ['GET'])
 def query_menus():
 	menus = []
 	for menu in Menu.menus():
+		menu.category = menucategory[menu.category_id]
 		menus.append(menu.as_dict())
 	return jsonify({"status":0, "data":menus})
 

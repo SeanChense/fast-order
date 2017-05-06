@@ -31,6 +31,7 @@ class Menu(Base):
     id      = Column(Integer, primary_key=True)
     name    = Column(String(100))
     category= Column(TEXT)
+    category_id = Column(Integer)
     price	= Column(FLOAT)
     image   = Column(TEXT)
   

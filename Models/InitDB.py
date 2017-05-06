@@ -89,6 +89,7 @@ def addMenus():
 		menu = Menu(names.get_full_name(), 
 			10)
 		menu.image = x
+		menu.category_id=random.randint(0, 4)
 		session.add(menu)
 		session.commit()
 		print menu
@@ -115,9 +116,9 @@ def update_menu_by_id():
 def initDB():
 	# clear()
 	# addUser()
-	addTables()
+	# addTables()
 	# updateTables()
-	# addMenus()
+	addMenus()
 	# addOrder()
 	# clearOrder()
 	# addRrt()

@@ -1,3 +1,16 @@
+# Menu Category
+
+```json
+id  categoryname
+0   今日推荐
+1   盖浇饭
+2   面食
+3   炒饭
+4   汤饭
+```
+
+
+
 ## ERROR_CODE
 
 ```json
