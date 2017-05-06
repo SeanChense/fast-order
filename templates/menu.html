@@ -146,20 +146,26 @@ var TableInit = function () {
                     }
                 }
             }, {
-                field: 'category',
+                field: 'category_id',
                 title: '类别',
                 editable: {
                     type: 'select',
                     title: '类别',
                     source:[{
+                        value:"0",
+                        text:"今日推荐"
+                    }, {
                         value:"1",
-                        text:"川菜"
+                        text:"盖浇饭"
                     }, {
                         value:"2",
-                        text:"粤菜"
+                        text:"面食"
                     }, {
                         value:"3",
-                        text:"鲁菜"
+                        text:"炒饭"
+                    }, {
+                        value:"4",
+                        text:"汤饭"
                     }],
                     url: 'menu/update',
                     params: function(params) {
