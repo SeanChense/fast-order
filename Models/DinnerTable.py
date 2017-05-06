@@ -49,6 +49,12 @@ class DinnerTable(Base):
         return tables     
 
     @staticmethod
+    def table_delete_by_ids(ids):
+        for _id in ids:
+            session.query(DinnerTable).filter_by(id=_id).delete()
+        session.commit()
+
+    @staticmethod
     def table_filter_id(id):
         table = session.query(DinnerTable).get(id)
         return table

@@ -38,3 +38,20 @@ def free_table(admin):
 	return jsonify({
 		'status':0
 		})
+
+@mod.route('/delete/', methods = ['POST'])
+@superadmin_required
+def delete_table(admin):
+	table_ids = request.form['table_ids']
+	if not table_ids:
+		return jsonify({
+			'status':err_tableid_null
+			})
+
+	DinnerTable.table_delete_by_ids(table_ids)
+	return jsonify({
+		"status":0
+		})
+
+
+

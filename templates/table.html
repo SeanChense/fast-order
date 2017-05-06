@@ -44,16 +44,16 @@
         oButtonInit.Init();
 
         $('#btn_delete').click(function(){
-            var menu = $('#tb_menu').bootstrapTable('getSelections')
-            if (menu[0] == null) {return}
-            var menu_ids = []
-            $.each(menu, function(index, value) {
-                menu_ids.push(value.id)
+            var tables = $('#tb_table').bootstrapTable('getSelections')
+            if (tables[0] == null) {return}
+            var table_ids = []
+            $.each(tables, function(index, value) {
+                table_ids.push(value.id)
             })
 
-            $.post("menu/delete", {"menu_ids" : JSON.stringify(menu_ids)})
+            $.post("table/delete/", {"table_ids" : JSON.stringify(table_ids)})
             .done(function() {
-                $('#tb_menu').bootstrapTable('refresh')
+                $('#tb_table').bootstrapTable('refresh')
             })
         })
     }))
