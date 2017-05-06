@@ -37,7 +37,9 @@
 				.done(function (data, status, xhr){
 					if (data["status"] === 0) {
 						window.location.replace("dashboard")
-					}
+					} else {
+            alert("登录失败，密码错误")
+          }
 				})
 			})
 		})
