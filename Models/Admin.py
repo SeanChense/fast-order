@@ -85,13 +85,14 @@ class Admin(Base):
         admin = Admin.admin_filter_id(data['id'])
         return admin
 
+    @staticmethod
+    def get_staff_all():
+        staff = session.query(Admin).all()
+
+        return staff
+
     def __str__(self):
         return "%s" % self.as_dict()
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 Base.metadata.create_all(engine)
-
-# boss = Admin('法国大厨', 'password', 3)
-# session.add(boss)
-# session.commit()
-

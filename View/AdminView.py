@@ -49,3 +49,23 @@ def menu(admin):
 @superadmin_required
 def table(admin):
 	return render_template('table.html')
+
+@mod.route('/staff.html', methods = ['GET'])
+@superadmin_required
+def staff(admin):
+	return render_template('staff.html')
+
+@mod.route('/staff/', methods = ['GET'])
+@superadmin_required
+def get_staff(admin):
+	staff_array = []
+
+	for staff in Admin.get_staff_all():
+		staff_array.append(staff.as_dict())
+
+	return jsonify({
+		"status":0,
+		"data":staff_array
+		}) 
+
+
