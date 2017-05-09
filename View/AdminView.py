@@ -7,6 +7,7 @@ from flask import render_template
 from Decorator import *
 from Models.Admin import Admin
 from Models.ErrorCode import *
+import json
 
 mod = Blueprint('Admin', __name__, url_prefix='/admin')
 
@@ -67,5 +68,16 @@ def get_staff(admin):
 		"status":0,
 		"data":staff_array
 		}) 
+
+@mod.route('/staff/update/', methods = ['POST'])
+@superadmin_required
+def update_admin(admin):
+	admin_id = request.form['admin_id']
+	newDict  = json.loads(request.form['dict'])
+	Admin.update_admin_by_id(admin_id, newDict)
+
+	return jsonify({
+		"status":0
+		})
 
 

@@ -101,24 +101,33 @@
 	            }, {
 	                field: 'name',
 	                title: '姓名'
-	                // editable: {
-	                //     type: 'select',
-                 //    	title: '更改可用状态',
-	                //     source:[{
-	                //         value:"0",
-	                //         text:"不可用"
-	                //     }, {
-	                //         value:"1",
-	                //         text:"可用"
-	                //     }],
-	                //     url:'/table/free/',
-	                //     params: function(params) {
-                 //            return {
-                 //                "table_id":params.pk
-                 //            }
-                 //        }
-	                // }
-	            }]
+	            }, {
+                    field:'permission',
+                    title:'权限',
+                    editable: {
+                        type: 'select',
+                        title: '更改可用状态',
+                        source:[{
+                            value:"1",
+                            text:"超级管理员"
+                        }, {
+                            value:"2",
+                            text:"服务员"
+                        }, {
+                            value:"3",
+                            text:"后厨"
+                        }],
+                        url:'/admin/staff/update/',
+                        params: function(params) {
+                            return {
+                                "admin_id":params.pk,
+                                "dict":JSON.stringify({
+                                    "permission":params.value
+                                })
+                            }
+                        }
+                    }
+                }]
 	        });
 	    };
 

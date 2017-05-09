@@ -91,6 +91,15 @@ class Admin(Base):
 
         return staff
 
+    @staticmethod
+    def update_admin_by_id(id, payload):
+        admin = Admin.admin_filter_id(id)
+        if not admin:
+            return
+        for (key, value) in payload.iteritems():
+            setattr(admin, key, value)
+        session.commit()
+
     def __str__(self):
         return "%s" % self.as_dict()
     def as_dict(self):
