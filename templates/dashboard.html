@@ -54,6 +54,11 @@
               <a href="#staff">员工管理 
               </a>
             </li>
+
+            <li>
+              <a href="#statistic">统计报表 
+              </a>
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -73,6 +78,8 @@
         $("#containner").load('admin/menu.html')
       } else if (this.href.indexOf('staff') != -1) {
         $("#containner").load('admin/staff.html')
+      } else if (this.href.indexOf('statistic') != -1) {
+        $("#containner").load('admin/statistic.html')
       }
     });      
     </script>

@@ -39,17 +39,34 @@ def login():
 
 		return out	
 
-
+################################################
+#                                              
+#               menu                               
+#											
+################################################
 
 @mod.route('/menu.html', methods = ['GET'])
 @superadmin_required
 def menu(admin):
 	return render_template('menu.html')
 
+
+################################################
+#                                              
+#               table                               
+#											
+################################################
+
 @mod.route('/table.html', methods = ['GET'])
 @superadmin_required
 def table(admin):
 	return render_template('table.html')
+
+################################################
+#                                              
+#               staff                               
+#											
+################################################
 
 @mod.route('/staff.html', methods = ['GET'])
 @superadmin_required
@@ -80,4 +97,13 @@ def update_admin(admin):
 		"status":0
 		})
 
+################################################
+#                                              
+#               statistic                               
+#											
+################################################
 
+@mod.route('/statistic.html', methods = ['GET'])
+@superadmin_required
+def statistic(admin):
+	return render_template('statistic.html')
