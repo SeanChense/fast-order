@@ -91,4 +91,3 @@ ENV/
 #secret file 
 secret_config.py
 frontend/node_modules/
-static/
