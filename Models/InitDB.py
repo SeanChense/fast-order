@@ -4,6 +4,7 @@ from User import *
 from DinnerTable import *
 from Menu import *
 from Order import *
+from Admin import *
 from Restaurant import *
 import names
 import random
@@ -113,16 +114,21 @@ def delete_menu():
 
 def update_menu_by_id():
 	Menu.update_menu_by_id(10, {"name":"newname", "price":100})
+def insert_admin():
+	admin = Admin("Mr.Huang", "password", 1)
+	session.add(admin)
+	session.commit()
 def initDB():
 	# clear()
-	# addUser()
-	# addTables()
+	 addUser()
+	 addTables()
 	# updateTables()
-	addMenus()
-	# addOrder()
+	 addMenus()
+	 addOrder()
 	# clearOrder()
-	# addRrt()
+	 addRrt()
 	# delete_menu()
 	# update_menu_by_id()
+	# insert_admin()
 initDB()
 # clear()
