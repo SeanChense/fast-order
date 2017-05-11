@@ -12,7 +12,7 @@ from Models import ErrorCode
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-		token = request.headers.get('Cookie')['authed']
+		token = request.headers.get('authed')
 		print token
 		if not token:
 			return jsonify({"status" : ErrorCode.err_token_null})
