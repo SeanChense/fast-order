@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 import sys 
-sys.path.append('..') 
+sys.path.append('/home/ubuntu/work/fast-order') 
 import secret_config
 
 from sqlalchemy import Column, String, Integer, ForeignKey
