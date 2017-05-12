@@ -36,7 +36,7 @@ class Menu(Base):
     image   = Column(TEXT)
   
 
-    def __init__(self, name, price):
+    def __init__(self, name=None, price=None):
         self.name = name
         self.price = price
 
@@ -65,6 +65,16 @@ class Menu(Base):
         for (key, value) in payload.iteritems():
             setattr(menu, key, value)
         session.commit()
+
+    @staticmethod
+    def insert_menu(payloads):
+        for payload in payloads:
+            menu = Menu()
+            for (key, value) in payload.iteritems():
+                setattr(menu, key, value)
+            session.add(menu)
+        session.commit()
+
 
     @staticmethod
     def menus():

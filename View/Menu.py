@@ -86,6 +86,14 @@ def update_menu(admin):
 		"status":0
 		})
 
+@mod.route("/add", methods = ['POST'])
+def add_menu():
+	menu_array = json.loads(request.form['menu'])
+	Menu.insert_menu(menu_array)
+
+	return jsonify({
+		"status":0
+		})
 
 
 
