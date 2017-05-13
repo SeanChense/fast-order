@@ -27,7 +27,3 @@ def upload_img(key, localfile):
 	print ret
 
 
-
-key = uuid.uuid1()
-upload_img(key, "../temp.jpeg")
-print 'url is http://oofm3g268.bkt.clouddn.com/'+str(key)
