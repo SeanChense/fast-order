@@ -1,8 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>创建新菜品</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>餐饮后台管理系统</title>
+
+    <script language="JavaScript" type="text/javascript" src="../static/js/jquery.min.js"></script>
+
+    <script src="../static/tether/js/tether.js"></script>
+    <link href="../static/tether/css/tether.css" rel="stylesheet" />
+
+    <link href="../static/bootstrap3/css/bootstrap.css" rel="stylesheet">
+    <script src="../static/bootstrap3/js/bootstrap.js"></script>
 </head>
+<h2>创建新菜品</h2>
+<form class="form-horizontal">
+	<div class="form-group">
+	    <label class="control-label col-sm-2" for="text" padd>菜品名称</label>
+	    <div class="col-sm-10">
+	      	<input type="text" class="form-control" id="name">
+	    </div>
+	 </div>
+
+
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="text">菜品价格</label>
+	    <div class="col-sm-10"> 
+	    	<input type="text" class="form-control" id="price">
+	    </div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="text">菜品类别</label>
+		<div class="col-sm-10"> 
+	    	<select class="form-control" id="sel1">
+				<option>今日推荐</option>
+				<option>盖浇饭</option>
+				<option>面食</option>
+				<option>炒饭</option>
+				<option>汤饭</option>
+			</select>
+	    </div>
+	</div>
+	  
+
+
+	  <div class="form-group"> 
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <button type="submit" class="btn btn-default">Submit</button>
+	    </div>
+	  </div>
+</form>
+
+
 <body>
 
 </body>
