@@ -50,6 +50,11 @@ def login():
 def menu(admin):
 	return render_template('menu.html')
 
+@mod.route('/create_menu.html', methods = ['GET'])
+@superadmin_required
+def create_menu(admin):
+	return render_template('create_menu.html')
+
 
 ################################################
 #                                              
