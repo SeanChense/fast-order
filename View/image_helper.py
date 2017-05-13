@@ -9,6 +9,7 @@ from Decorator import *
 from Models.ErrorCode import *
 from Qiniu.image_uploader import *
 import json
+import datetime, random
 
 mod = Blueprint('image_helper', __name__, url_prefix='/image')
 
@@ -16,9 +17,13 @@ mod = Blueprint('image_helper', __name__, url_prefix='/image')
 @superadmin_required
 def upload_image(admin):
 	image = request.files['image']
-	print 'look'
-	print image
-	with file('temp.jpeg', 'wb') as f:
+	image_name = get_image_name()
+	with file(image_name, 'wb') as f:
 		f.write(image.read())
-	upload_img('test', 'temp.jpeg')
-	return "ok"
+	upload_img(image_name, image_name)
+	return jsonify({
+		"status":0
+		})
+
+def get_image_name():
+    return datetime.datetime.now().strftime("%Y%m%d%H%M%S") + (str(random.randrange(100,999))) + '.jpeg'
