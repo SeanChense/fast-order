@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 import sys 
-sys.path.append('/home/ubuntu/work/fast-order') 
+sys.path.append('..') 
 
 from flask import Flask, request, Blueprint
 from flask import jsonify

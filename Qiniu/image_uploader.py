@@ -6,7 +6,7 @@ import qiniu.config
 import uuid
 
 import sys 
-sys.path.append('/home/ubuntu/work/fast-order') 
+sys.path.append('..') 
 import secret_config
 
 #需要填写你的 Access Key 和 Secret Key
