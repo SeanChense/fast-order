@@ -21,8 +21,8 @@ def upload_image(admin):
 	image_path = '/tmp/' + image_name
 	with file(image_path, 'wb') as f:
 		f.write(image.read())
-	key = upload_img(image_name, image_path)
-	key = "http://oofm3g268.bkt.clouddn.com/" + key
+	upload_img(image_name, image_path)
+	key = "http://oofm3g268.bkt.clouddn.com/" + image_name
 	return jsonify({
 		"status":0,
 		"data": key
