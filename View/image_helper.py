@@ -20,9 +20,10 @@ def upload_image(admin):
 	image_name = get_image_name()
 	with file(image_name, 'wb') as f:
 		f.write(image.read())
-	upload_img(image_name, image_name)
+	key = upload_img(image_name, image_name)
 	return jsonify({
-		"status":0
+		"status":0,
+		"data": key
 		})
 
 def get_image_name():

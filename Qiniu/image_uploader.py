@@ -22,8 +22,6 @@ def upload_img(key, localfile):
 	#生成上传 Token，可以指定过期时间等
 	token = q.upload_token(bucket_name, key, 3600)
 	ret, info = put_file(token, key, localfile)
-	print(info)
-	print
-	print ret
+	return info['key']
 
 
