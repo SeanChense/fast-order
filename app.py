@@ -17,7 +17,7 @@ app.config['MYSQL_DATABASE_HOST'] = secret_config.database_host
 mysql.init_app(app)
 
 
-from View import User, DinnerTable, Menu, Order, AdminView, RestaurantView
+from View import User, DinnerTable, Menu, Order, AdminView, RestaurantView, image_helper
 
 app.register_blueprint(User.mod)
 app.register_blueprint(DinnerTable.mod)
@@ -25,6 +25,7 @@ app.register_blueprint(Menu.mod)
 app.register_blueprint(Order.mod)
 app.register_blueprint(AdminView.mod)
 app.register_blueprint(RestaurantView.mod)
+app.register_blueprint(image_helper.mod)
 
 @app.route('/', methods = ['GET'])
 def index():

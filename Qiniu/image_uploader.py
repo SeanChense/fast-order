@@ -21,7 +21,6 @@ def upload_img(key, localfile):
 	bucket_name = 'fastorder'
 	#生成上传 Token，可以指定过期时间等
 	token = q.upload_token(bucket_name, key, 3600)
-
 	ret, info = put_file(token, key, localfile)
 	print(info)
 	print
@@ -29,6 +28,6 @@ def upload_img(key, localfile):
 
 
 
-# key = uuid.uuid1()
-# upload_img(key, "../test.png")
-# print 'url is http://oofm3g268.bkt.clouddn.com/'+str(key)
+key = uuid.uuid1()
+upload_img(key, "../temp.jpeg")
+print 'url is http://oofm3g268.bkt.clouddn.com/'+str(key)
