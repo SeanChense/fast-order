@@ -18,9 +18,10 @@ mod = Blueprint('image_helper', __name__, url_prefix='/image')
 def upload_image(admin):
 	image = request.files['image']
 	image_name = get_image_name()
-	with file(image_name, 'wb') as f:
+	image_path = 'tmp/' + image_name
+	with file(image_path, 'wb') as f:
 		f.write(image.read())
-	key = upload_img(image_name, image_name)
+	key = upload_img(image_name, image_path)
 	key = "http://oofm3g268.bkt.clouddn.com/" + key
 	return jsonify({
 		"status":0,
