@@ -35,12 +35,12 @@
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="text">菜品类别</label>
 		<div class="col-sm-10"> 
-	    	<select class="form-control" id="sel1">
-				<option>今日推荐</option>
-				<option>盖浇饭</option>
-				<option>面食</option>
-				<option>炒饭</option>
-				<option>汤饭</option>
+	    	<select class="form-control" id="category_id">
+				<option value="0">今日推荐</option>
+				<option value="1">盖浇饭</option>
+				<option value="2">面食</option>
+				<option value="3">炒饭</option>
+				<option value="4">汤饭</option>
 			</select>
 	    </div>
 	</div>
@@ -51,7 +51,7 @@
 			<input type="file" id="image">
 		</div>
 		<div class="col-sm-10">
-			<img src="https://www.w3schools.com/bootstrap/cinqueterre.jpg" class="img-thumbnail" alt="Cinque Terre" width="304" height="236"> 
+			<img id="imageView" class="img-thumbnail" alt="Cinque Terre" width="304" height="236"> 
 		</div>
 	</div>
 	  
@@ -59,11 +59,12 @@
 
 	  <div class="form-group"> 
 	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-default">创建新菜品</button>
+	      <button type="submit" class="btn btn-default" id="create">创建新菜品</button>
 	    </div>
 	  </div>
 </form>
 <script>
+	var image_url
 	$(document).ready(function() {
 
 	})
@@ -83,17 +84,68 @@
         // You *must* include these options!
         cache: false,
         contentType: false,
-        processData: false
+        processData: false,
 
         success:function(response) {
             console.log(response)
+            image_url = response["data"]
+            $('#imageView').attr('src', image_url)
         }
     });
 	}
-
 	document.getElementById('image').addEventListener('change', 
                                                   handleFileSelect, 
                                                   false);
+
+	function handleButtonClick(event) {
+		event.preventDefault(); // disable the POST of the form by the submit button
+		var name = document.getElementById('name').value
+		var price = document.getElementById('price').value
+		var category_id = $("#category_id").val()
+		var menu_list = [{
+			"name":name,
+			"price":price,
+			"category_id":category_id,
+			"image":image_url
+		}]
+
+		if (!name) {
+			alert("菜品名字不能为空")
+			return
+		}
+
+		if (!price) {
+			alert("菜品价格不能为空")	
+			return
+		}
+
+		if (!category_id) {
+			alert("菜品类别不能为空")	
+			return	
+		}
+
+
+
+
+
+
+		$.ajax({
+			url: '/menu/add',
+			data: {
+				"menu":JSON.stringify(menu_list)
+			},
+			type: 'POST',
+			success:function(response) {
+				if (response["status"] === 0) {
+					window.location.replace("/dashboard")
+				}
+			}
+		})
+		
+	}
+	document.getElementById('create').addEventListener('click',
+													 handleButtonClick,
+												     false)
 </script>
 
 <body>

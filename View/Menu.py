@@ -24,7 +24,8 @@ menucategory = [
 def query_menus():
 	menus = []
 	for menu in Menu.menus():
-		menu.category = menucategory[menu.category_id]
+		if menu.category_id:
+			menu.category = menucategory[menu.category_id]
 		menus.append(menu.as_dict())
 	return jsonify({"status":0, "data":menus})
 
@@ -87,7 +88,8 @@ def update_menu(admin):
 		})
 
 @mod.route("/add", methods = ['POST'])
-def add_menu():
+@superadmin_required
+def add_menu(admin):
 	menu_array = json.loads(request.form['menu'])
 	Menu.insert_menu(menu_array)
 
