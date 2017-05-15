@@ -37,6 +37,7 @@ id  categoryname
 1015 restaurant_name can not be null(just for web)
 1016 permission denied 
 1017 menu_payload can not be null(just for web)
+1018 staff_payload can not be null(just for web)
 ```
 
 
@@ -203,6 +204,27 @@ or
 ```json
 {
 	'status':0
+}
+```
+
+### delete table
+`/table/delete/` 
+
+**request** `POST` `Admin`
+```json
+{  
+   "table_ids":[  
+      1,
+      2,
+      3
+   ]
+}
+```
+
+**response** 
+```json
+{
+  'status':0
 }
 ```
 
