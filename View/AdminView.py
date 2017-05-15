@@ -78,6 +78,11 @@ def table(admin):
 def staff(admin):
 	return render_template('staff.html')
 
+@mod.route('/create_staff.html', methods = ['GET'])
+@superadmin_required
+def create_staff(admin):
+	return render_template("create_staff.html")
+
 @mod.route('/staff/', methods = ['GET'])
 @superadmin_required
 def get_staff(admin):
@@ -100,6 +105,20 @@ def update_admin(admin):
 
 	return jsonify({
 		"status":0
+		})
+
+@mod.route('/staff/add', methods = ['POST'])
+@superadmin_required
+def add_staff(admin):
+	staff_dict = json.loads(request.form['staff'])
+	if staff_dict is None:
+		return jsonify({
+			"status":err_staff_payload_null
+			})
+
+	Admin.add_admin(staff_dict)
+	return jsonify({
+			"status":0
 		})
 
 ################################################

@@ -38,11 +38,11 @@ class Admin(Base):
     avatar  = Column(TEXT)
     token   = Column(TEXT)
     title   = Column(String(100))
-#   1       superadmin/boss
-#   2       waiter/waitress
-#   3       cook
+#   0       superadmin/boss
+#   1       waiter/waitress
+#   2       cook
     permission = Column(Integer)
-    def __init__(self, name, password, permission, age=None, gender=None, avatar=None):
+    def __init__(self, name=None, password=None, permission=None, age=None, gender=None, avatar=None):
         self.name = name
         self.age  = age
         self.gender     = gender
@@ -100,6 +100,13 @@ class Admin(Base):
             setattr(admin, key, value)
         session.commit()
 
+    @staticmethod
+    def add_admin(payload):
+        admin = Admin()
+        for (key, value) in payload.iteritems():
+            setattr(admin, key, value)
+        session.add(admin)
+        session.commit()
     def __str__(self):
         return "%s" % self.as_dict()
     def as_dict(self):

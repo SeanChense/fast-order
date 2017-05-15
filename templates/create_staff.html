@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>餐饮后台管理系统</title>
+
+    <script language="JavaScript" type="text/javascript" src="../static/js/jquery.min.js"></script>
+
+    <script src="../static/tether/js/tether.js"></script>
+    <link href="../static/tether/css/tether.css" rel="stylesheet" />
+
+    <link href="../static/bootstrap3/css/bootstrap.css" rel="stylesheet">
+    <script src="../static/bootstrap3/js/bootstrap.js"></script>
+</head>
+<h2>创建新员工</h2>
+<form class="form-horizontal" id="form">
+	<div class="form-group">
+	    <label class="control-label col-sm-2" for="text" padd>员工名字</label>
+	    <div class="col-sm-10">
+	      	<input type="text" class="form-control" id="name">
+	    </div>
+	 </div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="text">权限(岗位)</label>
+		<div class="col-sm-10"> 
+	    	<select class="form-control" id="permission">
+				<option value="0">超级管理员</option>
+				<option value="1">服务员</option>
+				<option value="2">后厨</option>
+			</select>
+	    </div>
+	</div>
+	  
+
+
+	<div class="form-group"> 
+		<div class="col-sm-offset-2 col-sm-10">
+	   		<button type="submit" class="btn btn-default" id="create">创建新员工</button>
+		</div>
+	</div>
+</form>
+<script>
+	function handleButtonClick(event) {
+		event.preventDefault(); // disable the POST of the form by the submit button
+		var name = document.getElementById('name').value
+		var permission = $("#permission").val()
+		
+
+		if (!name) {
+			alert("员工名字不能为空")
+			return
+		}
+
+		if (!permission) {
+			alert("员工权限不能为空")	
+			return	
+		}
+
+		$.ajax({
+			url: 'staff/add',
+			data: {
+				"staff": JSON.stringify({
+					"name": name,
+					"permission": permission
+				})
+			},
+			type: 'POST',
+			success:function(response) {
+				if (response["status"] === 0) {
+					window.location.replace("/dashboard")
+				}
+			}
+		})
+		
+	}
+	document.getElementById('create').addEventListener('click',
+													 handleButtonClick,
+												     false)
+</script>
+
+<body>
+
+</body>
+</html>

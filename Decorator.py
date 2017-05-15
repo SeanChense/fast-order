@@ -45,7 +45,7 @@ def superadmin_required(f):
 		if admin == -2 or admin == -3:
 			return jsonify({"status" : ErrorCode.err_token_invalid})
 
-		if admin.permission > 1:
+		if admin.permission > 0:
 			return jsonify({'status': ErrorCode.err_permission_denied})
 
 		return f(admin)
@@ -72,7 +72,7 @@ def waiter_required(f):
 		if admin == -2 or admin == -3:
 			return jsonify({"status" : ErrorCode.err_token_invalid})
 
-		if admin.permission > 2:
+		if admin.permission > 1:
 			return jsonify({'status': ErrorCode.err_permission_denied})
 
 		return f(admin)

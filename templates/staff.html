@@ -56,6 +56,10 @@
                 $('#staff_table').bootstrapTable('refresh')
             })
         })
+
+        $('#btn_add').click(function (){
+            window.location.replace("admin/create_staff.html")
+        })
     }))
       
 
@@ -108,13 +112,13 @@
                         type: 'select',
                         title: '更改可用状态',
                         source:[{
-                            value:"1",
+                            value:"0",
                             text:"超级管理员"
                         }, {
-                            value:"2",
+                            value:"1",
                             text:"服务员"
                         }, {
-                            value:"3",
+                            value:"2",
                             text:"后厨"
                         }],
                         url:'/admin/staff/update/',
