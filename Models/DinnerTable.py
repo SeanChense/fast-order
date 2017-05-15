@@ -30,7 +30,7 @@ class DinnerTable(Base):
     uid         = Column(Integer)
     available   = Column(TINYINT)
     
-    def __init__(self, uid):
+    def __init__(self, uid=None):
         self.uid        = uid
         self.available  = (uid is None) # use none to free table resource
 
@@ -46,7 +46,13 @@ class DinnerTable(Base):
     @staticmethod
     def tables():
         tables = session.query(DinnerTable).all()
-        return tables     
+        return tables  
+
+    @staticmethod
+    def create_table():
+        table = DinnerTable()
+        session.add(table)
+        session.commit()
 
     @staticmethod
     def table_delete_by_ids(ids):

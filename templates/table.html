@@ -56,6 +56,13 @@
                 $('#tb_table').bootstrapTable('refresh')
             })
         })
+
+
+        $('#btn_add').click(function (){
+            $.post("table/add/").done(function(){
+                $('#tb_table').bootstrapTable('refresh')  
+            })
+        })
     }))
       
 

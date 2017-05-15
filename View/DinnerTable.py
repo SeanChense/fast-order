@@ -53,5 +53,12 @@ def delete_table(admin):
 		"status":0
 		})
 
+@mod.route('/add/', methods = ['POST'])
+@superadmin_required
+def add_table(admin):
+	DinnerTable.create_table()
+	return jsonify({
+			'status':0
+		})
 
 
