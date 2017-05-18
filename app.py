@@ -32,12 +32,12 @@ def index():
 	cookie_str = request.headers.get('Cookie')
 	token = None
 	if cookie_str:
-		print "get cookie " + cookie_str
+		print ("get cookie " + cookie_str)
 		cookie = SimpleCookie((cookie_str).encode("utf-8"))
 		for v in cookie.values():
 			if v.key == 'authed':
 				token = v.value	
-				print "get token " + token
+				print ("get token " + token)
 	if token:
 		admin  = Admin.verify_auth_token(token)
 		if admin != -1 and \

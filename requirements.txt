@@ -3,3 +3,4 @@ request
 flask-mysql
 Flask-SQLAlchemy
 names
+mysql-python
