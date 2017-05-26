@@ -50,11 +50,11 @@ class Admin(Base):
         self.avatar     = avatar
         self.permission = permission
 
-        if permission == 1:
+        if permission == 0:
             self.title = '超级管理员'
-        if permission == 2:
+        if permission == 1:
             self.title = '服务员'
-        if permission == 3:
+        if permission == 2:
             self.title = '后厨'
 
     def generate_auth_token(self, expiration = 6000000):

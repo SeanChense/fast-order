@@ -6,8 +6,8 @@ sys.path.append('..')
 from flask import Flask, request, Blueprint
 from flask import jsonify
 from Decorator import *
-from Models.Menu import Menu
-from Models.ErrorCode import *
+from Model.Menu import Menu
+from Model.ErrorCode import *
 import json
 
 mod = Blueprint('Menu', __name__, url_prefix='/menu')

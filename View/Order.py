@@ -4,9 +4,9 @@ sys.path.append('..')
 from flask import Flask, request, Blueprint
 from flask import jsonify
 from Decorator import login_required
-from Models.Order import Order
-from Models.Menu  import Menu
-from Models.ErrorCode import *
+from Model.Order import Order
+from Model.Menu  import Menu
+from Model.ErrorCode import *
 
 mod = Blueprint('Order', __name__, url_prefix='/order')
 

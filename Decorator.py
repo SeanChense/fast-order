@@ -3,9 +3,9 @@ from functools import wraps
 from flask import g, request, redirect, url_for
 from flask import jsonify
 
-from Models.User import User
-from Models.Admin import Admin
-from Models import ErrorCode
+from Model.User import User
+from Model.Admin import Admin
+from Model import ErrorCode
 
 
 

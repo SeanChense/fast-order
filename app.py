@@ -2,8 +2,8 @@ import secret_config
 from flask import Flask, redirect
 from flaskext.mysql import MySQL
 from flask import render_template
-from Models.Restaurant import Restaurant
-from Models.Admin import Admin
+from Model.Restaurant import Restaurant
+from Model.Admin import Admin
 from Decorator import *
 from Cookie import SimpleCookie
 

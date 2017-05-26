@@ -5,8 +5,8 @@ from flask import Flask, request, Blueprint
 from flask import jsonify
 from flask import render_template
 from Decorator import *
-from Models.Admin import Admin
-from Models.ErrorCode import *
+from Model.Admin import Admin
+from Model.ErrorCode import *
 import json
 
 mod = Blueprint('Admin', __name__, url_prefix='/admin')

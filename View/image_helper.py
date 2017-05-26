@@ -6,7 +6,7 @@ sys.path.append('..')
 from flask import Flask, request, Blueprint
 from flask import jsonify
 from Decorator import *
-from Models.ErrorCode import *
+from Model.ErrorCode import *
 from Qiniu.image_uploader import *
 import json
 import datetime, random
