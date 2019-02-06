@@ -1,4 +1,3 @@
-import secret_config
 from flask import Flask, redirect
 from flaskext.mysql import MySQL
 from flask import render_template
@@ -8,13 +7,13 @@ from Decorator import *
 from Cookie import SimpleCookie
 
 
-mysql = MySQL()
+# mysql = MySQL()
 app = Flask(__name__)
-app.config['MYSQL_DATABASE_USER'] = secret_config.database_user
-app.config['MYSQL_DATABASE_PASSWORD'] = secret_config.database_pass
-app.config['MYSQL_DATABASE_DB'] = secret_config.database_name
-app.config['MYSQL_DATABASE_HOST'] = secret_config.database_host
-mysql.init_app(app)
+# app.config['MYSQL_DATABASE_USER'] = secret_config.database_user
+# app.config['MYSQL_DATABASE_PASSWORD'] = secret_config.database_pass
+# app.config['MYSQL_DATABASE_DB'] = secret_config.database_name
+# app.config['MYSQL_DATABASE_HOST'] = secret_config.database_host
+# mysql.init_app(app)
 
 
 from View import User, DinnerTable, Menu, Order, AdminView, RestaurantView, image_helper
@@ -55,6 +54,6 @@ def dashboard(admin):
 
 
 if __name__ == "__main__":
-	# app.run(host="0.0.0.0", port="8080")
-	app.run(host="127.0.0.1", port="8080")
+	app.run(host="0.0.0.0", port="8080")
+	# app.run(host="127.0.0.1", port="8080")
 
