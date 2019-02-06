@@ -1,6 +1,6 @@
 qiniu
 request
-flask-mysql
-Flask-SQLAlchemy
+# flask-mysql
+# Flask-SQLAlchemy
 names
-mysql-python
+# mysql-python
