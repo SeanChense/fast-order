@@ -9,7 +9,7 @@ import json
 from werkzeug.utils import secure_filename
 import os
 
-UPLOAD_FOLDER = './upload/'
+UPLOAD_FOLDER = '~/sen/upload/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 # mysql = MySQL()
@@ -97,6 +97,6 @@ def upload_file():
 
 
 if __name__ == "__main__":
-	# app.run(host="0.0.0.0", port="8080")
-	app.run(host="127.0.0.1", port="8080")
+	app.run(host="0.0.0.0", port="8080")
+	# app.run(host="127.0.0.1", port="8080")
 
