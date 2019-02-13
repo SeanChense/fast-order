@@ -9,7 +9,7 @@ import json
 from werkzeug.utils import secure_filename
 import os
 
-UPLOAD_FOLDER = '~/sen/upload/'
+UPLOAD_FOLDER = '/root/sen/upload/'
 ALLOWED_EXTENSIONS = set(['json', 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 # mysql = MySQL()
