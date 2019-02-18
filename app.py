@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 import os
 
 UPLOAD_FOLDER = '/root/sen/upload/'
-ALLOWED_EXTENSIONS = set(['json', 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['json', 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'log'])
 
 # mysql = MySQL()
 app = Flask(__name__)
